@@ -12,7 +12,35 @@
 		B7F3FA411D23B65C00BED1B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F3FA3F1D23B65C00BED1B7 /* Main.storyboard */; };
 		B7F3FA431D23B65C00BED1B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7F3FA421D23B65C00BED1B7 /* Assets.xcassets */; };
 		B7F3FA461D23B65C00BED1B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7F3FA441D23B65C00BED1B7 /* LaunchScreen.storyboard */; };
+		B7F3FA551D23B66B00BED1B7 /* Flea.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F3FA541D23B66B00BED1B7 /* Flea.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B7F3FA591D23B66B00BED1B7 /* Flea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F3FA521D23B66B00BED1B7 /* Flea.framework */; };
+		B7F3FA5A1D23B66B00BED1B7 /* Flea.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7F3FA521D23B66B00BED1B7 /* Flea.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B7F3FA601D23B68900BED1B7 /* Flea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F3FA5F1D23B68900BED1B7 /* Flea.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7F3FA571D23B66B00BED1B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7F3FA301D23B65C00BED1B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7F3FA511D23B66B00BED1B7;
+			remoteInfo = Flea;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B7F3FA5E1D23B66B00BED1B7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B7F3FA5A1D23B66B00BED1B7 /* Flea.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B7F3FA381D23B65C00BED1B7 /* FleaSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FleaSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +50,22 @@
 		B7F3FA421D23B65C00BED1B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7F3FA451D23B65C00BED1B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7F3FA471D23B65C00BED1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7F3FA521D23B66B00BED1B7 /* Flea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Flea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7F3FA541D23B66B00BED1B7 /* Flea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flea.h; sourceTree = "<group>"; };
+		B7F3FA561D23B66B00BED1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7F3FA5F1D23B68900BED1B7 /* Flea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flea.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B7F3FA351D23B65C00BED1B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7F3FA591D23B66B00BED1B7 /* Flea.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7F3FA4E1D23B66B00BED1B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F3FA3A1D23B65C00BED1B7 /* FleaSample */,
+				B7F3FA531D23B66B00BED1B7 /* Flea */,
 				B7F3FA391D23B65C00BED1B7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				B7F3FA381D23B65C00BED1B7 /* FleaSample.app */,
+				B7F3FA521D23B66B00BED1B7 /* Flea.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,7 +106,28 @@
 			path = FleaSample;
 			sourceTree = "<group>";
 		};
+		B7F3FA531D23B66B00BED1B7 /* Flea */ = {
+			isa = PBXGroup;
+			children = (
+				B7F3FA541D23B66B00BED1B7 /* Flea.h */,
+				B7F3FA561D23B66B00BED1B7 /* Info.plist */,
+				B7F3FA5F1D23B68900BED1B7 /* Flea.swift */,
+			);
+			path = Flea;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B7F3FA4F1D23B66B00BED1B7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7F3FA551D23B66B00BED1B7 /* Flea.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		B7F3FA371D23B65C00BED1B7 /* FleaSample */ = {
@@ -74,15 +137,35 @@
 				B7F3FA341D23B65C00BED1B7 /* Sources */,
 				B7F3FA351D23B65C00BED1B7 /* Frameworks */,
 				B7F3FA361D23B65C00BED1B7 /* Resources */,
+				B7F3FA5E1D23B66B00BED1B7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B7F3FA581D23B66B00BED1B7 /* PBXTargetDependency */,
 			);
 			name = FleaSample;
 			productName = FleaSample;
 			productReference = B7F3FA381D23B65C00BED1B7 /* FleaSample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B7F3FA511D23B66B00BED1B7 /* Flea */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7F3FA5B1D23B66B00BED1B7 /* Build configuration list for PBXNativeTarget "Flea" */;
+			buildPhases = (
+				B7F3FA4D1D23B66B00BED1B7 /* Sources */,
+				B7F3FA4E1D23B66B00BED1B7 /* Frameworks */,
+				B7F3FA4F1D23B66B00BED1B7 /* Headers */,
+				B7F3FA501D23B66B00BED1B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Flea;
+			productName = Flea;
+			productReference = B7F3FA521D23B66B00BED1B7 /* Flea.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +178,9 @@
 				ORGANIZATIONNAME = "廖雷";
 				TargetAttributes = {
 					B7F3FA371D23B65C00BED1B7 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					B7F3FA511D23B66B00BED1B7 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -113,6 +199,7 @@
 			projectRoot = "";
 			targets = (
 				B7F3FA371D23B65C00BED1B7 /* FleaSample */,
+				B7F3FA511D23B66B00BED1B7 /* Flea */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +215,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7F3FA501D23B66B00BED1B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,7 +234,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7F3FA4D1D23B66B00BED1B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7F3FA601D23B68900BED1B7 /* Flea.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7F3FA581D23B66B00BED1B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7F3FA511D23B66B00BED1B7 /* Flea */;
+			targetProxy = B7F3FA571D23B66B00BED1B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B7F3FA3F1D23B65C00BED1B7 /* Main.storyboard */ = {
@@ -251,6 +361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = FleaSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danis.FleaSample;
@@ -262,10 +373,52 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = FleaSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.danis.FleaSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B7F3FA5C1D23B66B00BED1B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Flea/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.danis.Flea;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B7F3FA5D1D23B66B00BED1B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Flea/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.danis.Flea;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -286,6 +439,14 @@
 			buildConfigurations = (
 				B7F3FA4B1D23B65C00BED1B7 /* Debug */,
 				B7F3FA4C1D23B65C00BED1B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B7F3FA5B1D23B66B00BED1B7 /* Build configuration list for PBXNativeTarget "Flea" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7F3FA5C1D23B66B00BED1B7 /* Debug */,
+				B7F3FA5D1D23B66B00BED1B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

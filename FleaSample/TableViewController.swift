@@ -26,6 +26,7 @@ class TableViewController: UITableViewController {
         flea.backgroundStyle = .None
         flea.anchor = .Edge
         
+        flea.baseAt(navigationCotnroller: navigationController!)
         flea.fill(contentView).show()
     }
 }

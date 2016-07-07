@@ -47,6 +47,8 @@ public class Flea: UIView {
 
     private var baseView: UIView?
     private var baseNavigationConroller: UINavigationController?
+    private var baseTabBarController: UITabBarController?
+    private var baseBehindView: UIView?
     
     private var animationDuration = 0.3
     private var animationSpringDuration = 0.5
@@ -94,6 +96,9 @@ public class Flea: UIView {
         containerView.addSubview(contentView)
         addSubview(containerView)
         
+        containerView.layer.cornerRadius = cornerRadius
+        containerView.layer.masksToBounds = true
+        
         // 配置初始位置／配置最终位置
         switch direction {
         case .Top:
@@ -124,7 +129,6 @@ public class Flea: UIView {
         containerView.frame.origin = initialOrigin
     }
     
-
     public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         if backgroundStyle == .None && !CGRectContainsPoint(containerView.frame, point) {
             return nil
@@ -151,14 +155,27 @@ extension Flea {
     }
     private func show(inNavigationController navigationController: UINavigationController) {
         if navigationController.navigationBar.translucent && anchor == .Edge && direction == .Top {
+            baseBehindView = navigationController.navigationBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
         }
         show(inView: navigationController.view)
+    }
+    private func show(inTabBarController tabBarController: UITabBarController) {
+        if tabBarController.tabBar.translucent && anchor == .Edge && direction == .Bottom {
+            baseBehindView = tabBarController.tabBar
+            offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
+        }
+        show(inView: tabBarController.view)
     }
     
     private func show(inView view: UIView) {
         self.frame = view.bounds
         view.addSubview(self)
+        if let baseBehindView = baseBehindView {
+            view.insertSubview(self, belowSubview: baseBehindView)
+        }else {
+            view.addSubview(self)
+        }
         
         prepare()
         
@@ -196,13 +213,19 @@ extension Flea {
 }
 
 extension Flea {
-    public func baseAt(view view: UIView) -> Self {
+    public func baseAt(view view: UIView, behind: UIView? = nil) -> Self {
         baseView = view
+        baseBehindView = behind
         
         return self
     }
     public func baseAt(navigationCotnroller navigationController: UINavigationController) -> Self {
         baseNavigationConroller = navigationController
+        
+        return self
+    }
+    public func baseAt(tabBarController tabBarController: UITabBarController) -> Self {
+        baseTabBarController = tabBarController
         
         return self
     }

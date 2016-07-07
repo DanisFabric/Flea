@@ -38,7 +38,7 @@ public class Flea: UIView {
     public var backgroundStyle = FleaBackgroundStyle.Clear
     
     public var offset = UIOffset()
-    public var spring = false
+    public var spring = true
     public var cornerRadius: CGFloat = 0
     public var duration = 0.0
     
@@ -48,9 +48,58 @@ public class Flea: UIView {
     private var baseView: UIView?
     private var baseNavigationConroller: UINavigationController?
     
+    private var animationDuration = 0.3
+    private var animationSpringDuration = 0.5
+    
     private var initialOrigin = CGPoint()
     private var finalOrigin = CGPoint()
-    private var animationDuration = 0.3
+    func prepare() {
+        guard let contentView = contentView else {
+            return
+        }
+        backgroundColor = UIColor.clearColor()
+        switch style {
+        case .Normal(let color):
+            containerView = UIView()
+            containerView.backgroundColor = color
+        case .Blur(let blurEffectStyle):
+            let blurEffect = UIBlurEffect(style: blurEffectStyle)
+            containerView = UIVisualEffectView(effect: blurEffect)
+        }
+        
+        containerView.frame = contentView.frame
+        containerView.addSubview(contentView)
+        addSubview(containerView)
+        
+        // 配置初始位置／配置最终位置
+        switch direction {
+        case .Top:
+            initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
+            if anchor == .Edge {
+                finalOrigin = CGPoint(x: initialOrigin.x, y: offset.vertical)
+            }
+        case .Left:
+            initialOrigin = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+            if anchor == .Edge {
+                finalOrigin = CGPoint(x: offset.horizontal, y: initialOrigin.y)
+            }
+        case .Bottom:
+            initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
+            if anchor == .Edge {
+                finalOrigin = CGPoint(x: initialOrigin.x, y: bounds.height - containerView.bounds.height + offset.vertical)
+            }
+        case .Right:
+            initialOrigin = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+            if anchor == .Edge {
+                finalOrigin = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialOrigin.y)
+            }
+        }
+        if anchor == .Center {
+            finalOrigin = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
+        }
+        
+        containerView.frame.origin = initialOrigin
+    }
 }
 
 extension Flea {
@@ -76,57 +125,40 @@ extension Flea {
     }
     
     private func show(inView view: UIView) {
+        self.frame = view.bounds
+        view.addSubview(self)
+        
         prepare()
+        
+        let animations = {
+            self.containerView.frame.origin = self.finalOrigin
+            if self.backgroundStyle == .Dark {
+                self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+            }
+        }
+        if spring {
+            UIView.animateWithDuration(animationSpringDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+                
+                animations()
+                
+                }, completion: nil)
+        }else {
+            UIView.animateWithDuration(animationDuration, animations: { 
+                animations()
+            })
+        }
     }
     
-    func prepare() {
-        guard let contentView = contentView else {
-            return
-        }
-        switch backgroundStyle {
-        case .Clear:
-            backgroundColor = UIColor.clearColor()
-        case .Dark:
-            backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-        case .None:
-            backgroundColor = UIColor.clearColor()
-        }
-        switch style {
-        case .Normal(let color):
-            containerView = UIView()
-            containerView.backgroundColor = color
-        case .Blur(let blurEffectStyle):
-            let blurEffect = UIBlurEffect(style: blurEffectStyle)
-            containerView = UIVisualEffectView(effect: blurEffect)
-        }
-        
-        containerView.frame = contentView.frame
-        containerView.addSubview(contentView)
-        
-        // 配置初始位置／配置最终位置
-        switch direction {
-        case .Top:
-            initialOrigin = CGPoint()
-        case .Left:
-            break
-        case .Bottom:
-            break
-        case .Right:
-            break
-        }
-        
-        switch anchor {
-        case .Edge:
-            break
-        case .Center:
-            break
-        }
-        
-        
-    }
     
     public func dismiss() {
-        
+        UIView.animateWithDuration(animationDuration, animations: { 
+            
+            self.containerView.frame.origin = self.initialOrigin
+            self.backgroundColor = UIColor.clearColor()
+            
+            }) { (_) in
+                self.removeFromSuperview()
+        }
     }
     
 }

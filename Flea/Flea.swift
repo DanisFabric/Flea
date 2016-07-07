@@ -123,6 +123,15 @@ public class Flea: UIView {
         
         containerView.frame.origin = initialOrigin
     }
+    
+
+    public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        if backgroundStyle == .None && !CGRectContainsPoint(containerView.frame, point) {
+            return nil
+        }else {
+            return super.hitTest(point, withEvent: event)
+        }
+    }
 }
 
 extension Flea {

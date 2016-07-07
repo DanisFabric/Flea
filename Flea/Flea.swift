@@ -53,6 +53,29 @@ public class Flea: UIView {
     
     private var initialOrigin = CGPoint()
     private var finalOrigin = CGPoint()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setup()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    func setup() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
+        tap.delegate = self
+        addGestureRecognizer(tap)
+    }
+    
+    func onTap(tap: UITapGestureRecognizer) {
+        dismiss()
+    }
+    
     func prepare() {
         guard let contentView = contentView else {
             return
@@ -182,5 +205,19 @@ extension Flea {
         contentView!.frame = CGRect(origin: CGPoint(), size: contentView!.frame.size)
         
         return self
+    }
+}
+
+extension Flea: UIGestureRecognizerDelegate {
+    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard backgroundStyle != .None else {
+            return false
+        }
+        let location = gestureRecognizer.locationInView(self)
+        
+        if CGRectContainsPoint(containerView.frame, location) {
+            return false
+        }
+        return true
     }
 }

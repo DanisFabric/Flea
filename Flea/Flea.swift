@@ -63,9 +63,7 @@ public class Flea: UIView {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setup()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup() {
@@ -78,7 +76,7 @@ public class Flea: UIView {
         dismiss()
     }
     
-    func prepare() {
+    func prepared() {
         guard let contentView = contentView else {
             return
         }
@@ -137,6 +135,12 @@ public class Flea: UIView {
         }
     }
 }
+// MARK: - 子类重载
+extension Flea {
+    public func prepare() {
+        
+    }
+}
 
 extension Flea {
     public func show() {
@@ -178,6 +182,7 @@ extension Flea {
         }
         
         prepare()
+        prepared()
         
         let animations = {
             self.containerView.frame.origin = self.finalOrigin

@@ -36,7 +36,7 @@ public class ActionFlea: Flea {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     public func addAction(text: String?, image: UIImage?, action: (() -> Void)?) -> Self {

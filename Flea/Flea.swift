@@ -40,23 +40,95 @@ public class Flea: UIView {
     public var offset = UIOffset()
     public var spring = false
     public var cornerRadius: CGFloat = 0
-    
-    public var contentView: UIView!
-    public var contentSize: CGSize!
+    public var duration = 0.0
     
     private var containerView = UIView()
+    private var contentView: UIView?
 
     private var baseView: UIView?
     private var baseNavigationConroller: UINavigationController?
     
+    private var initialOrigin = CGPoint()
+    private var finalOrigin = CGPoint()
+    private var animationDuration = 0.3
+}
+
+extension Flea {
     public func show() {
+        if let baseNavigationConroller = baseNavigationConroller {
+            show(inNavigationController: baseNavigationConroller)
+            
+            return
+        }
+        if let baseView = baseView {
+            show(inView: baseView)
+            
+            return
+        }
+        let window = UIApplication.sharedApplication().keyWindow!
+        show(inView: window)
+    }
+    private func show(inNavigationController navigationController: UINavigationController) {
+        if navigationController.navigationBar.translucent && anchor == .Edge && direction == .Top {
+            offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
+        }
+        show(inView: navigationController.view)
+    }
+    
+    private func show(inView view: UIView) {
+        prepare()
+    }
+    
+    func prepare() {
+        guard let contentView = contentView else {
+            return
+        }
+        switch backgroundStyle {
+        case .Clear:
+            backgroundColor = UIColor.clearColor()
+        case .Dark:
+            backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+        case .None:
+            backgroundColor = UIColor.clearColor()
+        }
+        switch style {
+        case .Normal(let color):
+            containerView = UIView()
+            containerView.backgroundColor = color
+        case .Blur(let blurEffectStyle):
+            let blurEffect = UIBlurEffect(style: blurEffectStyle)
+            containerView = UIVisualEffectView(effect: blurEffect)
+        }
+        
+        containerView.frame = contentView.frame
+        containerView.addSubview(contentView)
+        
+        // 配置初始位置／配置最终位置
+        switch direction {
+        case .Top:
+            initialOrigin = CGPoint()
+        case .Left:
+            break
+        case .Bottom:
+            break
+        case .Right:
+            break
+        }
+        
+        switch anchor {
+        case .Edge:
+            break
+        case .Center:
+            break
+        }
+        
         
     }
     
     public func dismiss() {
         
     }
-    public func contentView() {
+    
 }
 
 extension Flea {
@@ -73,9 +145,9 @@ extension Flea {
 }
 
 extension Flea {
-    public func fillContentView(view: UIView, size: CGSize) -> Self {
+    public func fill(view: UIView) -> Self {
         contentView = view
-        contentSize = size
+        contentView!.frame = CGRect(origin: CGPoint(), size: contentView!.frame.size)
         
         return self
     }

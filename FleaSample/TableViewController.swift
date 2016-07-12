@@ -18,15 +18,18 @@ class TableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        contentView.backgroundColor = UIColor.clearColor()
-        
-        let flea = Flea()
-        flea.style = .Blur(.Dark)
-        flea.backgroundStyle = .None
-        flea.anchor = .Edge
-        
-        flea.baseAt(navigationCotnroller: navigationController!)
-        flea.fill(contentView).show()
+//        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+//        contentView.backgroundColor = UIColor.clearColor()
+//        
+//        let flea = Flea()
+//        flea.style = .Blur(.Dark)
+//        flea.backgroundStyle = .None
+//        flea.anchor = .Edge
+//        
+//        flea.baseAt(navigationCotnroller: navigationController!)
+//        flea.fill(contentView).show()
+        let notiFlea = NotificationFlea(title: "Danis is Handsome")
+        notiFlea.style = .Blur(.Dark)
+        notiFlea.baseAt(navigationCotnroller: navigationController!).show()
     }
 }

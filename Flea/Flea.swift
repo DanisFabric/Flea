@@ -161,6 +161,9 @@ extension Flea {
         if navigationController.navigationBar.translucent && anchor == .Edge && direction == .Top {
             baseBehindView = navigationController.navigationBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
+            if !UIApplication.sharedApplication().statusBarHidden {
+                offset.vertical += UIApplication.sharedApplication().statusBarFrame.height
+            }
         }
         show(inView: navigationController.view)
     }

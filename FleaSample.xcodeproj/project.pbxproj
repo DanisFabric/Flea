@@ -19,6 +19,7 @@
 		B7F3FA591D23B66B00BED1B7 /* Flea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F3FA521D23B66B00BED1B7 /* Flea.framework */; };
 		B7F3FA5A1D23B66B00BED1B7 /* Flea.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7F3FA521D23B66B00BED1B7 /* Flea.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7F3FA601D23B68900BED1B7 /* Flea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F3FA5F1D23B68900BED1B7 /* Flea.swift */; };
+		B7FDC7971D34C77B00EDD896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FDC7961D34C77B00EDD896 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		B7F3FA541D23B66B00BED1B7 /* Flea.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flea.h; sourceTree = "<group>"; };
 		B7F3FA561D23B66B00BED1B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7F3FA5F1D23B68900BED1B7 /* Flea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flea.swift; sourceTree = "<group>"; };
+		B7FDC7961D34C77B00EDD896 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				B73B6D661D2CFA480024D32E /* ActionFlea.swift */,
 				B73B6D681D2CFA520024D32E /* AlertFlea.swift */,
 				B73B6D6A1D2CFA8A0024D32E /* NotificationFlea.swift */,
+				B7FDC7961D34C77B00EDD896 /* Assets.xcassets */,
 			);
 			path = Flea;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7FDC7971D34C77B00EDD896 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

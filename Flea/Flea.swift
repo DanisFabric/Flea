@@ -270,6 +270,21 @@ extension Flea {
     }
 }
 
+extension Flea {
+    public func addAction(title: String, color: UIColor = UIColor.blueColor(), action: (() -> Void)?) {
+        switch type {
+        case .ActionSheet:
+            let actionView = contentView as! FleaActionView
+        case .Alert:
+            let alertView = contentView as! FleaAlertView
+        case .Notification:
+            let notificationView = contentView as! FleaNotificationView
+        default:
+            break
+        }
+    }
+}
+
 extension Flea: UIGestureRecognizerDelegate {
     public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard backgroundStyle != .None else {

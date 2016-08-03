@@ -8,14 +8,6 @@
 
 import UIKit
 
-// MARK: - ActionSheet
-extension Flea {
-    func addAction(title: String, handler: (() -> Void)?) {
-        
-    }
-    
-}
-
 class FleaActionView: UIView {
 
     var title: String?

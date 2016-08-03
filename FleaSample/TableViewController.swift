@@ -32,7 +32,6 @@ class TableViewController: UITableViewController {
         let flea = Flea(type: .ActionSheet(title: "", subTitle: ""))
         
         
-        
         let notiFlea = NotificationFlea(title: "Danis is Handsome")
         notiFlea.style = .Blur(.Dark)
         notiFlea.baseAt(navigationCotnroller: navigationController!).show()

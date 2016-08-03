@@ -272,13 +272,17 @@ extension Flea {
 
 extension Flea {
     public func addAction(title: String, color: UIColor = UIColor.blueColor(), action: (() -> Void)?) {
+        let item = FleaActionItem(title: title, color: color, action: action)
         switch type {
         case .ActionSheet:
             let actionView = contentView as! FleaActionView
+            actionView.actionItems.append(item)
         case .Alert:
             let alertView = contentView as! FleaAlertView
+            alertView.actionItems.append(item)
         case .Notification:
             let notificationView = contentView as! FleaNotificationView
+            notificationView.actionItem = item
         default:
             break
         }

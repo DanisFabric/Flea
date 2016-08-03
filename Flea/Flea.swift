@@ -31,7 +31,15 @@ public enum FleaBackgroundStyle {
     case None
 }
 
+public enum Type {
+    case None
+    case ActionSheet
+    case Alert
+    case Notification
+}
+
 public class Flea: UIView {
+    public private(set) var type = Type.None
     public var direction = Direction.Top
     public var anchor = Anchor.Edge
     public var style = FleaStyle.Normal(UIColor.whiteColor())
@@ -42,8 +50,8 @@ public class Flea: UIView {
     public var cornerRadius: CGFloat = 0
     public var duration = 0.0
     
-    private var containerView = UIView()
-    private var contentView: UIView?
+    var containerView = UIView()
+    var contentView: UIView?
 
     private var baseView: UIView?
     private var baseNavigationConroller: UINavigationController?
@@ -60,6 +68,22 @@ public class Flea: UIView {
         super.init(frame: frame)
         
         setup()
+    }
+    
+    public init(type: Type) {
+        self.init()
+        
+        self.type = type
+        switch type {
+        case .None:
+            break
+        case .ActionSheet:
+            break
+        case .Alert:
+            break
+        case .Notification:
+            break
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -135,12 +159,6 @@ public class Flea: UIView {
         }
     }
 }
-// MARK: - 子类重载
-extension Flea {
-    public func prepare() {
-        
-    }
-}
 
 extension Flea {
     public func show() {
@@ -183,8 +201,7 @@ extension Flea {
         }else {
             view.addSubview(self)
         }
-        
-        prepare()
+
         prepared()
         
         let animations = {

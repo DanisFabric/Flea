@@ -28,6 +28,10 @@ class TableViewController: UITableViewController {
 //        
 //        flea.baseAt(navigationCotnroller: navigationController!)
 //        flea.fill(contentView).show()
+//        let flea = Flea(frame: CGRect())
+        let flea = Flea(type: .None)
+        
+        
         let notiFlea = NotificationFlea(title: "Danis is Handsome")
         notiFlea.style = .Blur(.Dark)
         notiFlea.baseAt(navigationCotnroller: navigationController!).show()

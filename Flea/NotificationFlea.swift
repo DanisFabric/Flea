@@ -45,8 +45,7 @@ public class NotificationFlea: Flea {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func prepare() {
-        super.prepare()
+    public func prepareContentView() {
         
         let contentView = UIView()
         contentView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 36)
@@ -59,26 +58,6 @@ public class NotificationFlea: Flea {
         contentView.addSubview(titleLabel)
         contentView.addSubview(actionButton)
         contentView.addSubview(closeButton)
-        
-//        let c1 = NSLayoutConstraint(item: closeButton, attribute: .Left, relatedBy: .Equal, toItem: contentView, attribute: .Left, multiplier: 1.0, constant: 10)
-//        let c2 = NSLayoutConstraint(item: closeButton, attribute: .Width, relatedBy: .Equal, toItem: contentView, attribute: .Height, multiplier: 1.0, constant: 0)
-//        let c3 = NSLayoutConstraint(item: closeButton, attribute: .Height, relatedBy: .Equal, toItem: closeButton, attribute: .Width, multiplier: 1.0, constant: 0)
-//        let c4 = NSLayoutConstraint(item: closeButton, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 0)
-//        
-//        closeButton.addConstraints([c1,c2,c3,c4])
-//        
-//        let a1 = NSLayoutConstraint(item: actionButton, attribute: .Right, relatedBy: .Equal, toItem: contentView, attribute: .Right, multiplier: 1.0, constant: -10)
-//        let a2 = NSLayoutConstraint(item: actionButton, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 0)
-//        let a3 = NSLayoutConstraint(item: actionButton, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: 0)
-//        
-//        actionButton.addConstraints([a1,a2,a3])
-//        
-//        let t1 = NSLayoutConstraint(item: titleLabel, attribute: .Left, relatedBy: .Equal, toItem: closeButton, attribute: .Right, multiplier: 1.0, constant: 5.0)
-//        let t2 = NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .Equal, toItem: contentView, attribute: .Top, multiplier: 1.0, constant: 0)
-//        let t3 = NSLayoutConstraint(item: titleLabel, attribute: .Bottom, relatedBy: .Equal, toItem: contentView, attribute: .Bottom, multiplier: 1.0, constant: 0)
-//        let t4 = NSLayoutConstraint(item: titleLabel, attribute: .Right, relatedBy: .Equal, toItem: closeButton, attribute: .Left, multiplier: 1.0, constant: 5)
-//        
-//        titleLabel.addConstraints([t1,t2,t3,t4])
         
         fill(contentView)
     }

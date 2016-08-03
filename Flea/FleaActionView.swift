@@ -18,6 +18,8 @@ extension Flea {
 
 class FleaActionView: UIView {
 
+    var title: String?
+    var subTitle: String?
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

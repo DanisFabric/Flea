@@ -29,7 +29,8 @@ class TableViewController: UITableViewController {
 //        flea.baseAt(navigationCotnroller: navigationController!)
 //        flea.fill(contentView).show()
 //        let flea = Flea(frame: CGRect())
-        let flea = Flea(type: .None)
+        let flea = Flea(type: .ActionSheet(title: "", subTitle: ""))
+        
         
         
         let notiFlea = NotificationFlea(title: "Danis is Handsome")

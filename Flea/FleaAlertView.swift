@@ -10,6 +10,8 @@ import UIKit
 
 class FleaAlertView: UIView {
 
+    var title: String?
+    var subTitle: String?
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

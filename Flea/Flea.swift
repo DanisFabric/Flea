@@ -32,14 +32,14 @@ public enum FleaBackgroundStyle {
 }
 
 public enum Type {
-    case None
-    case ActionSheet
-    case Alert
-    case Notification
+    case Custom
+    case ActionSheet(title: String?, subTitle: String?)
+    case Alert(title: String?, subTitle: String?)
+    case Notification(title: String?)
 }
 
 public class Flea: UIView {
-    public private(set) var type = Type.None
+    public private(set) var type = Type.Custom
     public var direction = Direction.Top
     public var anchor = Anchor.Edge
     public var style = FleaStyle.Normal(UIColor.whiteColor())
@@ -75,14 +75,19 @@ public class Flea: UIView {
         
         self.type = type
         switch type {
-        case .None:
+        case .Custom:
             break
-        case .ActionSheet:
-            break
-        case .Alert:
-            break
-        case .Notification:
-            break
+        case .ActionSheet(let title, let subTitle):
+            contentView = FleaActionView()
+            (contentView as! FleaActionView).title = title
+            (contentView as! FleaActionView).subTitle = subTitle
+        case .Alert(let title, let subTitle):
+            contentView = FleaAlertView()
+            (contentView as! FleaAlertView).title = title
+            (contentView as! FleaAlertView).subTitle = subTitle
+        case .Notification(let title):
+            contentView = FleaNotificationView()
+            (contentView as! FleaNotificationView).title = title
         }
     }
     

@@ -38,6 +38,10 @@ public enum Type {
     case Notification(title: String?)
 }
 
+protocol FleaContentView {
+    func prepareInView(view: UIView)
+}
+
 public class Flea: UIView {
     public private(set) var type = Type.Custom
     public var direction = Direction.Top
@@ -118,7 +122,9 @@ public class Flea: UIView {
             let blurEffect = UIBlurEffect(style: blurEffectStyle)
             containerView = UIVisualEffectView(effect: blurEffect)
         }
-        
+        if let contentView = contentView as? FleaContentView {
+            contentView.prepareInView(self)
+        }
         containerView.frame = contentView.frame
         containerView.addSubview(contentView)
         addSubview(containerView)

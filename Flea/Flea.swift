@@ -83,6 +83,7 @@ public class Flea: UIView {
             break
         case .ActionSheet(let title, let subTitle):
             direction = .Bottom
+            backgroundStyle = .Dark
             contentView = FleaActionView()
             (contentView as! FleaActionView).title = title
             (contentView as! FleaActionView).subTitle = subTitle

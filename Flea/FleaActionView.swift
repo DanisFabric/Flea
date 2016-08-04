@@ -41,7 +41,6 @@ class FleaActionView: UIView, FleaContentView {
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(15)
         label.numberOfLines = 0
-        label.backgroundColor = UIColor.greenColor()
         
         return label
     }()

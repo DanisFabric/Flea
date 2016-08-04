@@ -29,7 +29,7 @@ class TableViewController: UITableViewController {
 //        flea.baseAt(navigationCotnroller: navigationController!)
 //        flea.fill(contentView).show()
 //        let flea = Flea(frame: CGRect())
-        let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: "这是一个牛逼的开源库"))
+        let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: nil))
         flea.addAction("item1") { 
             
         }

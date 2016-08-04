@@ -41,6 +41,7 @@ class FleaActionView: UIView, FleaContentView {
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(15)
         label.numberOfLines = 0
+        label.backgroundColor = UIColor.greenColor()
         
         return label
     }()
@@ -69,16 +70,28 @@ class FleaActionView: UIView, FleaContentView {
         subTitleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
         subTitleLabel.sizeToFit()
         
-        titleLabel.frame = CGRect(x: textMargin, y: textMargin, width: titleLabel.frame.width, height: titleLabel.frame.height)
-        
-        subTitleLabel.frame = CGRect(x: textMargin, y: titleLabel.frame.maxY + textMargin, width: subTitleLabel.frame.width, height: subTitleLabel.frame.height)
+        if titleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+            titleLabel.frame = CGRect(x: textMargin, y: textMargin, width: textWidth, height: titleLabel.frame.height)
+            maxY = titleLabel.frame.maxY
+        }
+        if subTitleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+            subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
+            maxY = subTitleLabel.frame.maxY
+        }
+        maxY += textMargin
         
         for item in actionItems {
-            let button = UIButton()
+            let button = UIButton(type: .System)
+            button.setTitle(item.title, forState: .Normal)
+            button.setTitleColor(item.color, forState: .Normal)
+            button.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
+            maxY += 44
             
             addSubview(button)
             buttons.append(button)
         }
+        
+        self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
     }
 }
 

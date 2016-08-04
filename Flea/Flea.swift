@@ -82,6 +82,7 @@ public class Flea: UIView {
         case .Custom:
             break
         case .ActionSheet(let title, let subTitle):
+            direction = .Bottom
             contentView = FleaActionView()
             (contentView as! FleaActionView).title = title
             (contentView as! FleaActionView).subTitle = subTitle
@@ -277,7 +278,7 @@ extension Flea {
 }
 
 extension Flea {
-    public func addAction(title: String, color: UIColor = UIColor.blueColor(), action: (() -> Void)?) {
+    public func addAction(title: String, color: UIColor = UIColor.redColor(), action: (() -> Void)?) {
         let item = FleaActionItem(title: title, color: color, action: action)
         switch type {
         case .ActionSheet:

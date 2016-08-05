@@ -91,10 +91,13 @@ public class Flea: UIView {
             direction = .Top
             backgroundStyle = .Dark
             anchor = .Center
+            cornerRadius = 4
             contentView = FleaAlertView()
             (contentView as! FleaAlertView).title = title
             (contentView as! FleaAlertView).subTitle = subTitle
         case .Notification(let title):
+            direction = .Top
+            backgroundStyle = .None
             contentView = FleaNotificationView()
             (contentView as! FleaNotificationView).title = title
         }

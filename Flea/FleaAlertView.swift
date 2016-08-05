@@ -107,6 +107,5 @@ extension FleaAlertView: FleaContentView {
         }
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)
-
     }
 }

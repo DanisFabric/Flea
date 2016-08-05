@@ -10,9 +10,26 @@ import UIKit
 
 class FleaNotificationView: UIView {
 
-    var title: String?
+    var title: String? {
+        get {
+            return titleLabel.text
+        }
+        set {
+            titleLabel.text = newValue
+        }
+    }
     
     var actionItem: FleaActionItem?
+    
+    var titleLabel = { () -> UILabel in
+        let label = UILabel()
+        label.textColor = UIColor.blackColor()
+        label.textAlignment = .Center
+        label.font = UIFont.systemFontOfSize(15)
+        label.numberOfLines = 0
+        
+        return label
+    }()
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

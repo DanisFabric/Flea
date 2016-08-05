@@ -88,6 +88,9 @@ public class Flea: UIView {
             (contentView as! FleaActionView).title = title
             (contentView as! FleaActionView).subTitle = subTitle
         case .Alert(let title, let subTitle):
+            direction = .Top
+            backgroundStyle = .Dark
+            anchor = .Center
             contentView = FleaAlertView()
             (contentView as! FleaAlertView).title = title
             (contentView as! FleaAlertView).subTitle = subTitle

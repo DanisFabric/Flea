@@ -14,7 +14,7 @@ struct FleaActionItem {
     var action: (() -> Void)?
 }
 
-class FleaActionView: UIView, FleaContentView {
+class FleaActionView: UIView {
 
     var title: String? {
         set {
@@ -53,8 +53,11 @@ class FleaActionView: UIView, FleaContentView {
         
         return label
     }()
-    var buttons = [UIButton]()
+    private var buttons = [UIButton]()
 
+}
+
+extension FleaActionView: FleaContentView {
     func prepareInView(view: UIView) {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
@@ -92,6 +95,7 @@ class FleaActionView: UIView, FleaContentView {
         
         self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
     }
+    
 }
 
 private class FleaActionButton: UIButton {

@@ -17,29 +17,28 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-//        let contentView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//        contentView.backgroundColor = UIColor.clearColor()
-//        
-//        let flea = Flea()
-//        flea.style = .Blur(.Dark)
-//        flea.backgroundStyle = .None
-//        flea.anchor = .Edge
-//        
-//        flea.baseAt(navigationCotnroller: navigationController!)
-//        flea.fill(contentView).show()
-//        let flea = Flea(frame: CGRect())
-        let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: nil))
-        flea.addAction("item1") { 
-            
+        switch indexPath.row {
+        case 0:
+            let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: nil))
+            flea.addAction("item1") {
+                
+            }
+            flea.addAction("item2") {
+                
+            }
+            flea.show()
+        case 1:
+            let alert = Flea(type: .Alert(title: "廖雷sdfsdf", subTitle: "是一个大帅哥"))
+            alert.addAction("Item1", action: { 
+                
+            })
+            alert.addAction("Item2", action: { 
+                
+            })
+            alert.show()
+        default:
+            break
         }
-        flea.addAction("item2") { 
-            
-        }
-        flea.show()
         
-        let notiFlea = NotificationFlea(title: "Danis is Handsome")
-        notiFlea.style = .Blur(.Dark)
-        notiFlea.baseAt(navigationCotnroller: navigationController!).show()
     }
 }

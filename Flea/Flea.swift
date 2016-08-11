@@ -243,7 +243,9 @@ extension Flea {
             })
         }
         if duration > 0 {
-            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * duration)), dispatch_get_main_queue(), {
+                self.dismiss()
+            })
         }
     }
     

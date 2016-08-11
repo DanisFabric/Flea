@@ -41,6 +41,7 @@ class TableViewController: UITableViewController {
             alert.show()
         case 2:
             let notification = Flea(type: .Notification(title: "么么哒"))
+            notification.duration = 2
             notification.addAction("Action", action: { 
                 
             })

@@ -45,7 +45,8 @@ class TableViewController: UITableViewController {
             notification.addAction("Action", action: { 
                 
             })
-            notification.baseAt(navigationCotnroller: navigationController!).show()
+//            notification.baseAt(navigationCotnroller: navigationController!).show()
+            notification.baseAt(tabBarController: tabBarController!).show()
         default:
             break
         }

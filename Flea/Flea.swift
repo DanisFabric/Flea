@@ -188,6 +188,11 @@ extension Flea {
             
             return
         }
+        if let baseTabBarController = baseTabBarController {
+            show(inTabBarController: baseTabBarController)
+            
+            return
+        }
         if let baseView = baseView {
             show(inView: baseView)
             
@@ -276,6 +281,7 @@ extension Flea {
         return self
     }
     public func baseAt(tabBarController tabBarController: UITabBarController) -> Self {
+        direction = .Bottom
         baseTabBarController = tabBarController
         
         return self

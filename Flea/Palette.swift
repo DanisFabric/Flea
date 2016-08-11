@@ -20,10 +20,12 @@ extension UIColor {
 }
 
 struct Palette {
-    static let darkGray = UIColor(hex: 0x00000)
-    static let gray     = UIColor(hex: 0x00000)
-    static let red      = UIColor(hex: 0x0000)
-    static let green    = UIColor(hex: 0x0000)
-    static let blue     = UIColor(hex: 0x0000)
+    static let gray      = UIColor(hex: 0x0000)
+    static let red       = UIColor(hex: 0x0000)
+    static let green     = UIColor(hex: 0x0000)
+    static let blue      = UIColor(hex: 0x0000)
+    static let Black     = UIColor(hex: 0x0000)
+    static let darkGray  = UIColor(hex: 0x0000)
+    static let lightGray = UIColor(hex: 0x0000)
     
 }

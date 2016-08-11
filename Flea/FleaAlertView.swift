@@ -47,8 +47,7 @@ class FleaAlertView: UIView {
         
         return label
     }()
-    private var buttons = [UIButton]()
-    
+    private var buttons = [FleaAlertButton]()
 }
 
 extension FleaAlertView: FleaContentView {
@@ -78,8 +77,8 @@ extension FleaAlertView: FleaContentView {
         maxY += textMargin
         
         if actionItems.count == 2 {
-            let button1 = UIButton(type: .System)
-            let button2 = UIButton(type: .System)
+            let button1 = FleaAlertButton(type: .System)
+            let button2 = FleaAlertButton(type: .System)
             button1.setTitle(actionItems[0].title, forState: .Normal)
             button1.setTitleColor(actionItems[0].color, forState: .Normal)
             button2.setTitle(actionItems[1].title, forState: .Normal)
@@ -95,7 +94,7 @@ extension FleaAlertView: FleaContentView {
             buttons.appendContentsOf([button1,button2])
         }else {
             for item in actionItems {
-                let button = UIButton(type: .System)
+                let button = FleaAlertButton(type: .System)
                 button.setTitle(item.title, forState: .Normal)
                 button.setTitleColor(item.color, forState: .Normal)
                 button.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 44)
@@ -107,5 +106,18 @@ extension FleaAlertView: FleaContentView {
         }
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)
+    }
+}
+
+private class FleaAlertButton: UIButton {
+    
+    private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        backgroundColor = Palette.lightGray
+    }
+    private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        backgroundColor = UIColor.whiteColor()
+    }
+    private override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        backgroundColor = UIColor.whiteColor()
     }
 }

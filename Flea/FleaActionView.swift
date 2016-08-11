@@ -53,7 +53,7 @@ class FleaActionView: UIView {
         
         return label
     }()
-    private var buttons = [UIButton]()
+    private var buttons = [FleaActionButton]()
 
 }
 
@@ -83,7 +83,7 @@ extension FleaActionView: FleaContentView {
         maxY += textMargin
         
         for item in actionItems {
-            let button = UIButton(type: .System)
+            let button = FleaActionButton(type: .System)
             button.setTitle(item.title, forState: .Normal)
             button.setTitleColor(item.color, forState: .Normal)
             button.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
@@ -95,10 +95,17 @@ extension FleaActionView: FleaContentView {
         
         self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
     }
-    
 }
 
 private class FleaActionButton: UIButton {
     
-    
+    private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        backgroundColor = Palette.lightGray
+    }
+    private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        backgroundColor = UIColor.whiteColor()
+    }
+    private override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        backgroundColor = UIColor.whiteColor()
+    }
 }

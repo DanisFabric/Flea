@@ -240,6 +240,9 @@ extension Flea {
                 animations()
             })
         }
+        if duration > 0 {
+            
+        }
     }
     
     
@@ -284,8 +287,9 @@ extension Flea {
     }
 }
 
+// MARK: - [Alert][Action][Notification] Configuration
 extension Flea {
-    public func addAction(title: String, color: UIColor = UIColor.redColor(), action: (() -> Void)?) {
+    public func addAction(title: String, color: UIColor = Palette.darkGray, action: (() -> Void)?) {
         let item = FleaActionItem(title: title, color: color, action: action)
         switch type {
         case .ActionSheet:
@@ -301,6 +305,56 @@ extension Flea {
             break
         }
     }
+    public var titleColor: UIColor? {
+        get {
+            switch type {
+            case .ActionSheet:
+                return (contentView as! FleaActionView).titleLabel.textColor
+            case .Alert:
+                return (contentView as! FleaAlertView).titleLabel.textColor
+            case .Notification:
+                return (contentView as! FleaNotificationView).titleLabel.textColor
+            default:
+                return nil
+            }
+        }
+        set {
+            switch type {
+            case .ActionSheet:
+                (contentView as! FleaActionView).titleLabel.textColor = newValue
+            case .Alert:
+                (contentView as! FleaAlertView).titleLabel.textColor = newValue
+            case .Notification:
+                (contentView as! FleaNotificationView).titleLabel.textColor = newValue
+                (contentView as! FleaNotificationView).closeButton.tintColor = newValue // CloseButton use the same color of TitleLabel
+            default:
+                break
+            }
+        }
+    }
+    public var subTitleColor: UIColor? {
+        get {
+            switch type {
+            case .ActionSheet:
+                return (contentView as! FleaActionView).subTitleLabel.textColor
+            case .Alert:
+                return (contentView as! FleaAlertView).subTitleLabel.textColor
+            default:
+                return nil
+            }
+        }
+        set {
+            switch type {
+            case .ActionSheet:
+                (contentView as! FleaActionView).subTitleLabel.textColor = newValue
+            case .Alert:
+                (contentView as! FleaAlertView).subTitleLabel.textColor = newValue
+            default:
+                break
+            }
+        }
+    }
+
 }
 
 extension Flea: UIGestureRecognizerDelegate {

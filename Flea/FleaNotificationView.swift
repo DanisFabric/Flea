@@ -30,12 +30,23 @@ class FleaNotificationView: UIView {
         
         return label
     }()
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var closeButton = { () -> UIButton in
+        let button = UIButton(type: .System)
+        button.setImage(UIImage(named: "flea-close"), forState: .Normal)
+        
+        return button
+    }()
+    var actionButton = { () -> UIButton in
+        let button = UIButton(type: .System)
+        
+        return button
+    }()
+}
 
+extension FleaNotificationView: FleaContentView {
+    func prepareInView(view: UIView) {
+        addSubview(titleLabel)
+        addSubview(closeButton)
+        
+    }
 }

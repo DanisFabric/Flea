@@ -19,7 +19,10 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
-            let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: nil))
+            let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: "sdfsdfsdf "))
+            flea.titleColor = UIColor.greenColor()
+            flea.subTitleColor = UIColor.blueColor()
+            
             flea.addAction("item1") {
                 
             }

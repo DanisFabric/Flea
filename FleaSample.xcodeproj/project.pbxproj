@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B7355F541D2E28CE0067E066 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7355F531D2E28CE0067E066 /* TableViewController.swift */; };
-		B73B6D671D2CFA480024D32E /* ActionFlea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B6D661D2CFA480024D32E /* ActionFlea.swift */; };
-		B73B6D691D2CFA520024D32E /* AlertFlea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B6D681D2CFA520024D32E /* AlertFlea.swift */; };
-		B73B6D6B1D2CFA8A0024D32E /* NotificationFlea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B6D6A1D2CFA8A0024D32E /* NotificationFlea.swift */; };
 		B7CBD1571D54941400CC8A2B /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBD1561D54941400CC8A2B /* Palette.swift */; };
 		B7E013E61D4EFF3E005B6E75 /* FleaActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */; };
 		B7E013E81D4EFF4E005B6E75 /* FleaNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */; };
@@ -52,9 +49,6 @@
 
 /* Begin PBXFileReference section */
 		B7355F531D2E28CE0067E066 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		B73B6D661D2CFA480024D32E /* ActionFlea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionFlea.swift; sourceTree = "<group>"; };
-		B73B6D681D2CFA520024D32E /* AlertFlea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFlea.swift; sourceTree = "<group>"; };
-		B73B6D6A1D2CFA8A0024D32E /* NotificationFlea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFlea.swift; sourceTree = "<group>"; };
 		B7CBD1561D54941400CC8A2B /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaActionView.swift; sourceTree = "<group>"; };
 		B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaNotificationView.swift; sourceTree = "<group>"; };
@@ -131,9 +125,6 @@
 				B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */,
 				B7E013E91D4EFF58005B6E75 /* FleaAlertView.swift */,
 				B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */,
-				B73B6D661D2CFA480024D32E /* ActionFlea.swift */,
-				B73B6D681D2CFA520024D32E /* AlertFlea.swift */,
-				B73B6D6A1D2CFA8A0024D32E /* NotificationFlea.swift */,
 				B7CBD1561D54941400CC8A2B /* Palette.swift */,
 				B7FDC7961D34C77B00EDD896 /* Assets.xcassets */,
 			);
@@ -263,12 +254,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B73B6D6B1D2CFA8A0024D32E /* NotificationFlea.swift in Sources */,
 				B7E013E81D4EFF4E005B6E75 /* FleaNotificationView.swift in Sources */,
 				B7E013E61D4EFF3E005B6E75 /* FleaActionView.swift in Sources */,
 				B7F3FA601D23B68900BED1B7 /* Flea.swift in Sources */,
-				B73B6D671D2CFA480024D32E /* ActionFlea.swift in Sources */,
-				B73B6D691D2CFA520024D32E /* AlertFlea.swift in Sources */,
 				B7E013EA1D4EFF58005B6E75 /* FleaAlertView.swift in Sources */,
 				B7CBD1571D54941400CC8A2B /* Palette.swift in Sources */,
 			);

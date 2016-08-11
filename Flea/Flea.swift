@@ -98,8 +98,10 @@ public class Flea: UIView {
         case .Notification(let title):
             direction = .Top
             backgroundStyle = .None
+            style = .Blur(.Dark)
             contentView = FleaNotificationView()
             (contentView as! FleaNotificationView).title = title
+            (contentView as! FleaNotificationView).flea = self
         }
     }
     

@@ -58,7 +58,7 @@ extension FleaNotificationView: FleaContentView {
     func prepareInView(view: UIView) {
         addSubview(closeButton)
         addSubview(titleLabel)
-        addSubview(closeButton)
+        addSubview(actionButton)
         closeButton.addTarget(self, action: #selector(onClose(_:)), forControlEvents: .TouchUpInside)
         
         let size = CGSize(width: view.bounds.width, height: 44)
@@ -66,10 +66,11 @@ extension FleaNotificationView: FleaContentView {
         closeButton.frame = CGRect(x: 10, y: 0, width: size.height, height: size.height)
         
         titleLabel.sizeToFit()
-        titleLabel.frame = CGRect(x: closeButton.frame.maxX + 10, y: 0, width: titleLabel.frame.width, height: size.height)
+        titleLabel.frame = CGRect(x: closeButton.frame.maxX + 5, y: 0, width: titleLabel.frame.width, height: size.height)
         
         actionButton.sizeToFit()
-        actionButton.frame = CGRect(x: size.width - actionButton.frame.width - 10, y: 0, width: actionButton.frame.width, height: size.height)
+        print(actionButton.frame)
+        actionButton.frame = CGRect(x: size.width - actionButton.frame.width - 20, y: 0, width: actionButton.frame.width, height: size.height)
         
         frame = CGRect(origin: CGPoint(), size: size)
     }

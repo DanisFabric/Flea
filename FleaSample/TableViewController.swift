@@ -42,9 +42,12 @@ class TableViewController: UITableViewController {
         case 2:
             let notification = Flea(type: .Notification(title: "么么哒"))
             notification.duration = 2
-            notification.addAction("Action", action: { 
+            notification.setNotificationAction("Action", action: { 
                 
             })
+//            notification.addAction("Action", action: { 
+//                
+//            })
 //            notification.baseAt(navigationCotnroller: navigationController!).show()
             notification.baseAt(tabBarController: tabBarController!).show()
         default:

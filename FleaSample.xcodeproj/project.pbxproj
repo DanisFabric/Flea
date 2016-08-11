@@ -86,6 +86,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B728B0FC1D5C7FA500B54E9A /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
 		B7F3FA2F1D23B65C00BED1B7 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +134,7 @@
 				B7E013E91D4EFF58005B6E75 /* FleaAlertView.swift */,
 				B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */,
 				B7CBD1561D54941400CC8A2B /* Palette.swift */,
+				B728B0FC1D5C7FA500B54E9A /* Samples */,
 				B7FDC7961D34C77B00EDD896 /* Assets.xcassets */,
 			);
 			path = Flea;

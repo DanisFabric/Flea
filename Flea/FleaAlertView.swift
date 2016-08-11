@@ -33,7 +33,7 @@ class FleaAlertView: UIView {
         let label = UILabel()
         label.textColor = UIColor.blackColor()
         label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(15)
+        label.font = UIFont.boldSystemFontOfSize(17)
         label.numberOfLines = 0
         
         return label

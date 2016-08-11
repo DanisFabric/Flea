@@ -308,12 +308,15 @@ extension Flea {
         case .Alert:
             let alertView = contentView as! FleaAlertView
             alertView.actionItems.append(item)
-        case .Notification:
-            let notificationView = contentView as! FleaNotificationView
-            notificationView.actionItem = item
         default:
             break
         }
+    }
+    public func setNotificationAction(title: String, color: UIColor = UIColor.whiteColor(), action: (() -> Void)?) {
+        let item = FleaActionItem(title: title, color: color, action: action)
+        let notificationView = contentView as! FleaNotificationView
+        notificationView.actionItem = item
+        
     }
     public var titleColor: UIColor? {
         get {

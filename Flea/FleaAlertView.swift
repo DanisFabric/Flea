@@ -31,7 +31,7 @@ class FleaAlertView: UIView {
     
     var titleLabel = { () -> UILabel in
         let label = UILabel()
-        label.textColor = UIColor.blackColor()
+        label.textColor = FleaPalette.DarkGray
         label.textAlignment = .Center
         label.font = UIFont.boldSystemFontOfSize(17)
         label.numberOfLines = 0
@@ -40,7 +40,7 @@ class FleaAlertView: UIView {
     }()
     var subTitleLabel = { () -> UILabel in
         let label = UILabel()
-        label.textColor = UIColor.darkGrayColor()
+        label.textColor = FleaPalette.LightGray
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(13)
         label.numberOfLines = 0
@@ -112,7 +112,7 @@ extension FleaAlertView: FleaContentView {
 private class FleaAlertButton: UIButton {
     
     private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        backgroundColor = Palette.lightGray
+        backgroundColor = FleaPalette.LightGray
     }
     private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         backgroundColor = UIColor.whiteColor()

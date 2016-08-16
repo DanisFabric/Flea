@@ -20,8 +20,8 @@ class TableViewController: UITableViewController {
         switch indexPath.row {
         case 0:
             let flea = Flea(type: .ActionSheet(title: "廖雷dfgdflg dflg kdlfg dlf; gkldg dlf; ldf; kldfg dfl; klg ", subTitle: "sdfsdfsdf "))
-            flea.titleColor = UIColor.greenColor()
-            flea.subTitleColor = UIColor.blueColor()
+//            flea.titleColor = UIColor.greenColor()
+//            flea.subTitleColor = UIColor.blueColor()
             
             flea.addAction("item1") {
                 
@@ -38,6 +38,7 @@ class TableViewController: UITableViewController {
             alert.addAction("Item2", action: { 
                 
             })
+//            alert.addAction("Delete", color: Palette, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
             alert.show()
         case 2:
             let notification = Flea(type: .Notification(title: "么么哒"))

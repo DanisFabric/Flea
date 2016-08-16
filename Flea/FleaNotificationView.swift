@@ -38,8 +38,10 @@ class FleaNotificationView: UIView {
     }()
     var closeButton = { () -> UIButton in
         let button = UIButton(type: .System)
-        button.setImage(UIImage(named: "flea-close"), forState: .Normal)
+        
+        let icon = UIImage(named: "flea-close", inBundle: NSBundle(forClass: FleaNotificationView.self), compatibleWithTraitCollection: nil)
         button.tintColor = UIColor.whiteColor()
+        button.setImage(icon, forState: .Normal)
         
         return button
     }()

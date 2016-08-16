@@ -112,7 +112,7 @@ extension FleaAlertView: FleaContentView {
 private class FleaAlertButton: UIButton {
     
     private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        backgroundColor = FleaPalette.LightGray
+        backgroundColor = FleaPalette.DarkWhite
     }
     private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         backgroundColor = UIColor.whiteColor()

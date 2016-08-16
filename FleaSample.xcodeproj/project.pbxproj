@@ -12,7 +12,7 @@
 		B79112821D63028F0090937F /* AlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112811D63028F0090937F /* AlertTableViewController.swift */; };
 		B79112841D6302980090937F /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112831D6302980090937F /* NotificationTableViewController.swift */; };
 		B79112861D6302A20090937F /* CustomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112851D6302A20090937F /* CustomTableViewController.swift */; };
-		B7CBD1571D54941400CC8A2B /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBD1561D54941400CC8A2B /* Palette.swift */; };
+		B7CBD1571D54941400CC8A2B /* FleaPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBD1561D54941400CC8A2B /* FleaPalette.swift */; };
 		B7E013E61D4EFF3E005B6E75 /* FleaActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */; };
 		B7E013E81D4EFF4E005B6E75 /* FleaNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */; };
 		B7E013EA1D4EFF58005B6E75 /* FleaAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E91D4EFF58005B6E75 /* FleaAlertView.swift */; };
@@ -57,7 +57,7 @@
 		B79112811D63028F0090937F /* AlertTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewController.swift; sourceTree = "<group>"; };
 		B79112831D6302980090937F /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		B79112851D6302A20090937F /* CustomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewController.swift; sourceTree = "<group>"; };
-		B7CBD1561D54941400CC8A2B /* Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		B7CBD1561D54941400CC8A2B /* FleaPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaPalette.swift; sourceTree = "<group>"; };
 		B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaActionView.swift; sourceTree = "<group>"; };
 		B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaNotificationView.swift; sourceTree = "<group>"; };
 		B7E013E91D4EFF58005B6E75 /* FleaAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaAlertView.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */,
 				B7E013E91D4EFF58005B6E75 /* FleaAlertView.swift */,
 				B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */,
-				B7CBD1561D54941400CC8A2B /* Palette.swift */,
+				B7CBD1561D54941400CC8A2B /* FleaPalette.swift */,
 				B728B0FC1D5C7FA500B54E9A /* Samples */,
 				B7FDC7961D34C77B00EDD896 /* Assets.xcassets */,
 			);
@@ -282,7 +282,7 @@
 				B7E013E61D4EFF3E005B6E75 /* FleaActionView.swift in Sources */,
 				B7F3FA601D23B68900BED1B7 /* Flea.swift in Sources */,
 				B7E013EA1D4EFF58005B6E75 /* FleaAlertView.swift in Sources */,
-				B7CBD1571D54941400CC8A2B /* Palette.swift in Sources */,
+				B7CBD1571D54941400CC8A2B /* FleaPalette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

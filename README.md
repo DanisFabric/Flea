@@ -4,8 +4,8 @@ Flea 是iOS中对`UIAlertController`的替换方案，提供了友好、灵活�
 
 ## 系统需求
 
-- iOS8.0 及以上
-- Swift2.2
+- iOS8.0+
+- Swift 2.2+
 
 ## 截图
 
@@ -15,45 +15,47 @@ Flea 是iOS中对`UIAlertController`的替换方案，提供了友好、灵活�
 
 将下面的语句添加到`Cartfile`中，并执行`carthage update`命令
 
-```
-github "DanisFabric/Flea"
+```ogdl
+$ github "DanisFabric/Flea"
 ```
 
 ## 使用
 
-### 内置组件
+### ActionSheet
 
-Flea 提供了三种默认的弹框类型，通过enum关联值的特性确定对应的标题和副标题：
-
-1. `ActionSheet(title: String?, subTitle: String?)`：底部弹出框
-2. `Alert(title: String?, subTitle: String?)`：用户确认弹框
-3. `Notification(title: String?)`：提示栏
-
-示例1，2，3分别对应三种类型的实际效果，`ActionSheet`和`Alert`类型都通过下面语句来添加按钮及响应。
-
-```
-func addAction(title: String, color: UIColor = FleaPalette.Blue, action: (() -> Void)?)
-	
-```
-
-`Notification`类型只运行添加一个按钮和响应，是通过以下代码实现的。
-
-```
-func setNotificationAction(title: String, color: UIColor = UIColor.whiteColor(), action: (() -> Void)?)
-
-```
-
-#### 示例代码
-##### ActionSheet
-
-```
-let defaultActionSheet = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
-defaultActionSheet.addAction("Sorry, I don't love it", action: { 
-	// Call this after tap button         
+```swift
+let actionFlea = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
+actionFlea.titleColor = FleaPalette.DarkGray
+actionFlea.subTitleColor = FleaPalette.Green
+actionFlea.addAction("Sorry, I don't love it", color: FleaPalette.Blue, action: { 
+	//        
 })
-defaultActionSheet.addAction("I love it!", action: { 
-	// Call this after tap button
+actionFlea.addAction("I love it", color: FleaPalette.Red, action: { 
+	//           
 })
-defaultActionSheet.show()
+actionFlea.show()
 
+```
+
+### Alert
+
+```swift
+let alert = Flea(type: .Alert(title: "Do you love Flea", subTitle: "If you love Flea, you may start it on GitHub"))
+alert.addAction("No, thanks", action: { 
+                
+})
+alert.addAction("I love Flea", action: { 
+                
+})
+alert.addAction("What is Flea", color: FleaPalette.Red, action: { 
+                
+})
+alert.show()
+```
+
+### notification 
+
+```swift
+let notificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
+notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).show()
 ```

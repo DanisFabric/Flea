@@ -64,4 +64,65 @@ notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).sho
 ```
 ### 自定义
 
-Flea 十分灵活，用户能够填充任意的View，依托于Flea弹框展示。
+Flea 十分灵活，用户能够填充任意的View，依托于Flea弹框展示。你可以通过众多参数来配置Flea的行为。
+
+#### Direction
+
+Direction决定从弹框从哪个方向进入屏幕
+
+```swift
+flea.direction = .Top // 默认
+
+public enum Direction {
+    case Top
+    case Left
+    case Bottom
+    case Right
+}
+
+```
+
+#### Achor
+
+Anchor 决定弹框显示的位置
+
+```swift
+flea.anchor = .Edge // 默认
+
+public enum Anchor {
+    case Edge		// 贴边
+    case Center		// 停留在中间
+}
+```
+
+#### Style
+
+Style 是弹框的显示风格
+
+```swift
+flea.stype = .Normal(UIColor.WhiteColor())		// 默认
+
+public enum FleaStyle {
+    case Normal(UIColor)				// 纯色
+    case Blur(UIBlurEffectStyle)	// 模糊
+}
+```
+
+#### BackgroundStyle
+
+BackgroundStyle 决定弹框是时的背景样式
+```swift
+flea.backgroundStyle = .Clear		//默认
+
+public enum FleaBackgroundStyle {
+    case Dark		// 暗色阴影
+    case Clear		// 透明，不能点击背景后的组件
+    case None		// 透明，可以透过背景点
+}
+```
+
+#### 其他
+
+* cornerRadius: 弹出框的圆角大小， 默认为0
+* duration: 弹框停留时长，时间超过duration，弹框自动消失。默认为0，不会 自动消失
+* 

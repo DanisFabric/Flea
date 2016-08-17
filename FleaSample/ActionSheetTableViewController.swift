@@ -40,7 +40,17 @@ class ActionSheetTableViewController: UITableViewController {
             defaultActionSheet.show()
             break
         case 1:
-            break
+            let actionFlea = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
+            actionFlea.titleColor = FleaPalette.DarkGray
+            actionFlea.subTitleColor = FleaPalette.Green
+            actionFlea.addAction("Sorry, I don't love it", color: FleaPalette.Blue, action: { 
+                
+            })
+            actionFlea.addAction("I love it", color: FleaPalette.Red, action: { 
+                
+            })
+            actionFlea.show()
+            
         case 2:
             break
         default:

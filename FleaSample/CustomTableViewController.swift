@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flea
 
 class CustomTableViewController: UITableViewController {
 
@@ -23,5 +24,24 @@ class CustomTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 0:
+            let guideView = GuideView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            guideView.addPage(UIImage(named: "guide-0")!)
+            guideView.addPage(UIImage(named: "guide-1")!)
+            
+            let flea = Flea(type: .Custom)
+            flea.anchor = .Center
+            flea.direction = .Top
+            flea.backgroundStyle = .Dark
+            flea.cornerRadius = 4
+            
+            flea.fill(guideView).show()
+        default:
+            break
+        }
     }
 }

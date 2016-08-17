@@ -265,7 +265,11 @@ extension Flea {
                 self.removeFromSuperview()
         }
     }
-    
+    public func stay(duration: Double) -> Flea {
+        self.duration = duration
+        
+        return self
+    }
 }
 
 extension Flea {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flea
 
 class ActionSheetTableViewController: UITableViewController {
 
@@ -25,16 +26,26 @@ class ActionSheetTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 0:
+            let defaultActionSheet = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
+            defaultActionSheet.addAction("Sorry, I don't love it", action: { 
+                
+            })
+            defaultActionSheet.addAction("I love it!", action: { 
+                
+            })
+            defaultActionSheet.show()
+            break
+        case 1:
+            break
+        case 2:
+            break
+        default:
+            break
+        }
     }
 
 }

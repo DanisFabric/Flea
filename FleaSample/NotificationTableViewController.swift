@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flea
 
 class NotificationTableViewController: UITableViewController {
 
@@ -24,16 +25,16 @@ class NotificationTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 0:
+            let defaultNotificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
+            defaultNotificationFlea.setNotificationAction("Thanks", action: { 
+                
+            })
+            defaultNotificationFlea.baseAt(tabBarController: tabBarController!).stay(2).show()
+        default:
+            break
+        }
     }
 }

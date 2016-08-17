@@ -57,5 +57,11 @@ alert.show()
 
 ```swift
 let notificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
+notificationFlea.setNotificationAction("Thanks", action: { 
+                
+})
 notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).show()
 ```
+### 自定义
+
+Flea 十分灵活，用户能够填充任意的View，依托于Flea弹框展示。

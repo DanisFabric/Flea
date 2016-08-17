@@ -47,7 +47,21 @@ class FleaAlertView: UIView {
         
         return label
     }()
+    
     private var buttons = [FleaAlertButton]()
+    
+    let contentLine = { () -> UIView in
+        let line = UIView()
+        line.backgroundColor = FleaPalette.DarkWhite
+        
+        return line
+    }()
+    let buttonLine = { () -> UIView in
+        let line = UIView()
+        line.backgroundColor = FleaPalette.DarkWhite
+        
+        return line
+    }()
 }
 
 extension FleaAlertView: FleaContentView {
@@ -84,12 +98,19 @@ extension FleaAlertView: FleaContentView {
             button2.setTitle(actionItems[1].title, forState: .Normal)
             button2.setTitleColor(actionItems[1].color, forState: .Normal)
             
+            contentLine.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 0.5)
+            buttonLine.frame = CGRect(x: contentWidth / 2, y: maxY, width: 0.5, height: 44)
+            button1.line.hidden = true
+            button2.line.hidden = true
+            
             button1.frame = CGRect(x: 0, y: maxY, width: contentWidth/2, height: 44)
             button2.frame = CGRect(x: contentWidth/2, y: maxY, width: contentWidth/2, height: 44)
             maxY += 44
             
             addSubview(button1)
             addSubview(button2)
+            addSubview(contentLine)
+            addSubview(buttonLine)
             
             buttons.appendContentsOf([button1,button2])
         }else {
@@ -111,6 +132,30 @@ extension FleaAlertView: FleaContentView {
 
 private class FleaAlertButton: UIButton {
     
+    let line = { () -> UIView in
+        let line = UIView()
+        line.backgroundColor = FleaPalette.DarkWhite
+        
+        return line
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(line)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let margin: CGFloat = 10
+        line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
+    }
+    
     private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         backgroundColor = FleaPalette.DarkWhite
     }
@@ -120,4 +165,5 @@ private class FleaAlertButton: UIButton {
     private override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         backgroundColor = UIColor.whiteColor()
     }
+
 }

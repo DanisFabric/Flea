@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--ActionSheet-->
         <scene sceneID="LlA-sM-KwU">
             <objects>
                 <tableViewController id="4tL-wP-nXr" customClass="ActionSheetTableViewController" customModule="FleaSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,13 +75,13 @@
                             <outlet property="delegate" destination="4tL-wP-nXr" id="FqN-hP-yff"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="xZe-Mc-8Ft"/>
+                    <navigationItem key="navigationItem" title="ActionSheet" id="xZe-Mc-8Ft"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbu-jG-LiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1067" y="440"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Alert-->
         <scene sceneID="Wff-mL-4Xi">
             <objects>
                 <tableViewController id="rlK-6s-efy" customClass="AlertTableViewController" customModule="FleaSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,12 +109,21 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6Xl-mn-wLQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="srX-vP-8mw" style="IBUITableViewCellStyleDefault" id="6Xl-mn-wLQ">
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Xl-mn-wLQ" id="alb-v6-ztn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Many Buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="srX-vP-8mw">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="64Y-Jd-OWT">
@@ -133,7 +142,7 @@
                             <outlet property="delegate" destination="rlK-6s-efy" id="myP-2N-jVj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Il2-pl-7si"/>
+                    <navigationItem key="navigationItem" title="Alert" id="Il2-pl-7si"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Flw-Fr-aLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,7 +165,7 @@
             </objects>
             <point key="canvasLocation" x="256" y="1185"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Notification-->
         <scene sceneID="2m3-si-OWu">
             <objects>
                 <tableViewController id="Z16-RT-ghE" customClass="NotificationTableViewController" customModule="FleaSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -208,13 +217,13 @@
                             <outlet property="delegate" destination="Z16-RT-ghE" id="bKX-6g-Pj7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="MGZ-QS-b3N"/>
+                    <navigationItem key="navigationItem" title="Notification" id="MGZ-QS-b3N"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CR8-fa-7pc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="1893"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Custom-->
         <scene sceneID="a70-Xo-bW5">
             <objects>
                 <tableViewController id="eAB-hn-w02" customClass="CustomTableViewController" customModule="FleaSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -266,7 +275,7 @@
                             <outlet property="delegate" destination="eAB-hn-w02" id="rwI-bQ-9Hq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="0ua-xU-nA2"/>
+                    <navigationItem key="navigationItem" title="Custom" id="0ua-xU-nA2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5R5-kd-kh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

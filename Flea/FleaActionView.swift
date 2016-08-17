@@ -99,6 +99,30 @@ extension FleaActionView: FleaContentView {
 
 private class FleaActionButton: UIButton {
     
+    let line = { () -> UIView in
+        let line = UIView()
+        line.backgroundColor = FleaPalette.DarkWhite
+        
+        return line
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(line)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let margin: CGFloat = 10
+        line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
+    }
+    
     private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         backgroundColor = FleaPalette.DarkWhite
     }

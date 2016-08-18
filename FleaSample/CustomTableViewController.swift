@@ -40,6 +40,14 @@ class CustomTableViewController: UITableViewController {
             flea.cornerRadius = 4
             
             flea.fill(guideView).show()
+        case 1:
+            let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 240))
+            
+            let flea = Flea(type: .Custom)
+            flea.direction = .Top
+            flea.backgroundStyle = .Dark
+            
+            flea.fill(loginView).show()
         default:
             break
         }

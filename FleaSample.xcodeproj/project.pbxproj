@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B73527CA1D6576B700427BCF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73527C91D6576B700427BCF /* LoginView.swift */; };
 		B79112801D6302860090937F /* ActionSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791127F1D6302860090937F /* ActionSheetTableViewController.swift */; };
 		B79112821D63028F0090937F /* AlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112811D63028F0090937F /* AlertTableViewController.swift */; };
 		B79112841D6302980090937F /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112831D6302980090937F /* NotificationTableViewController.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B73527C91D6576B700427BCF /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B791127F1D6302860090937F /* ActionSheetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetTableViewController.swift; sourceTree = "<group>"; };
 		B79112811D63028F0090937F /* AlertTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewController.swift; sourceTree = "<group>"; };
 		B79112831D6302980090937F /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				B79112881D630AA00090937F /* GuideView.swift */,
+				B73527C91D6576B700427BCF /* LoginView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B79112841D6302980090937F /* NotificationTableViewController.swift in Sources */,
+				B73527CA1D6576B700427BCF /* LoginView.swift in Sources */,
 				B79112821D63028F0090937F /* AlertTableViewController.swift in Sources */,
 				B7F3FA3C1D23B65C00BED1B7 /* AppDelegate.swift in Sources */,
 				B79112801D6302860090937F /* ActionSheetTableViewController.swift in Sources */,

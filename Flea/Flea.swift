@@ -38,7 +38,7 @@ public enum Type {
     case Notification(title: String?)
 }
 
-protocol FleaContentView {
+public protocol FleaContentView {
     func prepareInView(view: UIView)
 }
 

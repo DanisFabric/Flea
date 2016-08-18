@@ -33,6 +33,12 @@ class NotificationTableViewController: UITableViewController {
                 
             })
             defaultNotificationFlea.baseAt(tabBarController: tabBarController!).stay(2).show()
+        case 1:
+            let notificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
+            notificationFlea.titleColor = UIColor.whiteColor()
+            notificationFlea.style = .Normal(FleaPalette.Green)
+            
+            notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).show()
         default:
             break
         }

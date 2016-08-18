@@ -29,7 +29,7 @@ class CustomTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
-            let guideView = GuideView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            let guideView = GuideView(frame: CGRect(x: 0, y: 0, width: 280, height: 360))
             guideView.addPage(UIImage(named: "guide-0")!)
             guideView.addPage(UIImage(named: "guide-1")!)
             

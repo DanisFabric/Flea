@@ -73,7 +73,7 @@ class LoginView: UIView {
         
         let margin = CGSize(width: 10, height: 5)
         titleLabel.frame = CGRect(x: margin.width, y: 30, width: bounds.width - margin.width * 2, height: 44)
-        nameTextField.frame = CGRect(x: margin.width, y: titleLabel.frame.maxY + margin.height, width: bounds.width - margin.width * 2, height: 44)
+        nameTextField.frame = CGRect(x: margin.width, y: titleLabel.frame.maxY + margin.height + 10, width: bounds.width - margin.width * 2, height: 44)
         passwordField.frame = CGRect(x: margin.width, y: nameTextField.frame.maxY + margin.height, width: bounds.width - margin.width * 2, height: 44)
         confirmButton.frame = CGRect(x: 0, y: bounds.height - 50, width: bounds.width, height: 50)
     }

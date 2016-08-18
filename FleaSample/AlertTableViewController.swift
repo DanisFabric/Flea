@@ -38,7 +38,7 @@ class AlertTableViewController: UITableViewController {
             })
             defaultAlertFlea.show()
         case 1:
-            let alert = Flea(type: .Alert(title: "Do you love Flea", subTitle: "If you love Flea, you may start it on GitHub"))
+            let alert = Flea(type: .Alert(title: "Do you love Flea", subTitle: "If you love Flea, you may star it on GitHub"))
             alert.addAction("No, thanks", action: { 
                 
             })

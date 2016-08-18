@@ -41,7 +41,7 @@ class CustomTableViewController: UITableViewController {
             
             flea.fill(guideView).show()
         case 1:
-            let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 240))
+            let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
             
             let flea = Flea(type: .Custom)
             flea.direction = .Top
@@ -49,7 +49,7 @@ class CustomTableViewController: UITableViewController {
             
             flea.fill(loginView).show()
         case 2:
-            let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width * 0.8, height: 240))
+            let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width * 0.8, height: 250))
             
             let flea = Flea(type: .Custom)
             flea.direction = .Top

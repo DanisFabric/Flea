@@ -1,3 +1,4 @@
+![logo](https://github.com/DanisFabric/Flea/blob/master/images/logo.png)
 # Flea
 
 Flea 是iOS中对`UIAlertController`的替换方案，提供了友好、灵活的API对用户进行弹框提示。

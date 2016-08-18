@@ -26,6 +26,8 @@ class LoginView: UIView {
         field.textColor = FleaPalette.DarkGray
         field.placeholder = "Username"
         field.textAlignment = .Center
+        field.backgroundColor = FleaPalette.DarkWhite
+        field.layer.cornerRadius = 4
         field.font = UIFont.systemFontOfSize(15)
         
         return field
@@ -37,6 +39,8 @@ class LoginView: UIView {
         field.secureTextEntry = true
         field.placeholder = "Password"
         field.textAlignment = .Center
+        field.backgroundColor = FleaPalette.DarkWhite
+        field.layer.cornerRadius = 4
         field.font = UIFont.systemFontOfSize(15)
         
         return field

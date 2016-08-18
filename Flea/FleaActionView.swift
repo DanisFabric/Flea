@@ -15,7 +15,8 @@ struct FleaActionItem {
 }
 
 class FleaActionView: UIView {
-
+    weak var flea: Flea?
+    
     var title: String? {
         set {
             titleLabel.text = newValue
@@ -54,7 +55,6 @@ class FleaActionView: UIView {
         return label
     }()
     private var buttons = [FleaActionButton]()
-
 }
 
 extension FleaActionView: FleaContentView {
@@ -82,22 +82,42 @@ extension FleaActionView: FleaContentView {
         }
         maxY += textMargin
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
+        self.addGestureRecognizer(tap)
+        
         for item in actionItems {
-            let button = FleaActionButton(type: .System)
+            let button = FleaActionButton(type: .Custom)
+            
+            button.titleLabel?.font = UIFont.systemFontOfSize(15)
             button.setTitle(item.title, forState: .Normal)
             button.setTitleColor(item.color, forState: .Normal)
             button.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
             maxY += 44
             
+            print("Add Action")
+            button.addTarget(self, action: #selector(onTapAction(_:)), forControlEvents: .TouchUpInside)
             addSubview(button)
             buttons.append(button)
         }
-        
         self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
+    }
+    func onTap(sender: AnyObject) {
+        print("点我")
+    }
+    func onTapAction(sender: AnyObject) {
+        print("点Button")
+        
+        let button = sender as! FleaActionButton
+        let index = buttons.indexOf(button)!
+        let item = actionItems[index]
+        
+        item.action?()
+        flea?.dismiss()
+
     }
 }
 
-private class FleaActionButton: UIButton {
+class FleaActionButton: UIButton {
     
     let line = { () -> UIView in
         let line = UIView()
@@ -116,20 +136,26 @@ private class FleaActionButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         let margin: CGFloat = 10
         line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
     }
     
-    private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
         backgroundColor = FleaPalette.DarkWhite
     }
-    private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        
         backgroundColor = UIColor.whiteColor()
     }
-    private override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        super.touchesCancelled(touches, withEvent: event)
+        
         backgroundColor = UIColor.whiteColor()
     }
 }

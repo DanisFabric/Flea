@@ -9,7 +9,8 @@
 import UIKit
 
 class FleaAlertView: UIView {
-
+    weak var flea: Flea?
+    
     var title: String? {
         get {
             return titleLabel.text
@@ -62,6 +63,8 @@ class FleaAlertView: UIView {
         
         return line
     }()
+    
+
 }
 
 extension FleaAlertView: FleaContentView {
@@ -91,8 +94,11 @@ extension FleaAlertView: FleaContentView {
         maxY += textMargin
         
         if actionItems.count == 2 {
-            let button1 = FleaAlertButton(type: .System)
-            let button2 = FleaAlertButton(type: .System)
+            let button1 = FleaAlertButton(type: .Custom)
+            let button2 = FleaAlertButton(type: .Custom)
+            button1.titleLabel?.font = UIFont.systemFontOfSize(15)
+            button2.titleLabel?.font = UIFont.systemFontOfSize(15)
+
             button1.setTitle(actionItems[0].title, forState: .Normal)
             button1.setTitleColor(actionItems[0].color, forState: .Normal)
             button2.setTitle(actionItems[1].title, forState: .Normal)
@@ -107,6 +113,9 @@ extension FleaAlertView: FleaContentView {
             button2.frame = CGRect(x: contentWidth/2, y: maxY, width: contentWidth/2, height: 44)
             maxY += 44
             
+            button1.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
+            button2.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
+            
             addSubview(button1)
             addSubview(button2)
             addSubview(contentLine)
@@ -115,12 +124,15 @@ extension FleaAlertView: FleaContentView {
             buttons.appendContentsOf([button1,button2])
         }else {
             for item in actionItems {
-                let button = FleaAlertButton(type: .System)
+                let button = FleaAlertButton(type: .Custom)
+                button.titleLabel?.font = UIFont.systemFontOfSize(15)
+
                 button.setTitle(item.title, forState: .Normal)
                 button.setTitleColor(item.color, forState: .Normal)
                 button.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 44)
                 maxY += 44
                 
+                button.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
                 addSubview(button)
                 buttons.append(button)
             }
@@ -128,9 +140,16 @@ extension FleaAlertView: FleaContentView {
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)
     }
+    @objc private func onTapButton(sender: FleaAlertButton) {
+        let index = buttons.indexOf(sender)!
+        let item = actionItems[index]
+            
+        item.action?()
+        flea?.dismiss()
+    }
 }
 
-private class FleaAlertButton: UIButton {
+class FleaAlertButton: UIButton {
     
     let line = { () -> UIView in
         let line = UIView()
@@ -149,20 +168,26 @@ private class FleaAlertButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         let margin: CGFloat = 10
         line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
     }
     
-    private override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
         backgroundColor = FleaPalette.DarkWhite
     }
-    private override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        
         backgroundColor = UIColor.whiteColor()
     }
-    private override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        super.touchesCancelled(touches, withEvent: event)
+        
         backgroundColor = UIColor.whiteColor()
     }
 

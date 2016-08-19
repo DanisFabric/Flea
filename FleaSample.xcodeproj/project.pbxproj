@@ -13,6 +13,8 @@
 		B79112841D6302980090937F /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112831D6302980090937F /* NotificationTableViewController.swift */; };
 		B79112861D6302A20090937F /* CustomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112851D6302A20090937F /* CustomTableViewController.swift */; };
 		B79112891D630AA00090937F /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79112881D630AA00090937F /* GuideView.swift */; };
+		B7B684841D670FB1001D4C72 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B684831D670FB1001D4C72 /* ShareView.swift */; };
+		B7B684861D671237001D4C72 /* DrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B684851D671237001D4C72 /* DrawerView.swift */; };
 		B7CBD1571D54941400CC8A2B /* FleaPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBD1561D54941400CC8A2B /* FleaPalette.swift */; };
 		B7E013E61D4EFF3E005B6E75 /* FleaActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */; };
 		B7E013E81D4EFF4E005B6E75 /* FleaNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */; };
@@ -59,6 +61,8 @@
 		B79112831D6302980090937F /* NotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		B79112851D6302A20090937F /* CustomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewController.swift; sourceTree = "<group>"; };
 		B79112881D630AA00090937F /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
+		B7B684831D670FB1001D4C72 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		B7B684851D671237001D4C72 /* DrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerView.swift; sourceTree = "<group>"; };
 		B7CBD1561D54941400CC8A2B /* FleaPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaPalette.swift; sourceTree = "<group>"; };
 		B7E013E51D4EFF3E005B6E75 /* FleaActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaActionView.swift; sourceTree = "<group>"; };
 		B7E013E71D4EFF4E005B6E75 /* FleaNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FleaNotificationView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			children = (
 				B79112881D630AA00090937F /* GuideView.swift */,
 				B73527C91D6576B700427BCF /* LoginView.swift */,
+				B7B684831D670FB1001D4C72 /* ShareView.swift */,
+				B7B684851D671237001D4C72 /* DrawerView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -269,8 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B684841D670FB1001D4C72 /* ShareView.swift in Sources */,
 				B79112841D6302980090937F /* NotificationTableViewController.swift in Sources */,
 				B73527CA1D6576B700427BCF /* LoginView.swift in Sources */,
+				B7B684861D671237001D4C72 /* DrawerView.swift in Sources */,
 				B79112821D63028F0090937F /* AlertTableViewController.swift in Sources */,
 				B7F3FA3C1D23B65C00BED1B7 /* AppDelegate.swift in Sources */,
 				B79112801D6302860090937F /* ActionSheetTableViewController.swift in Sources */,

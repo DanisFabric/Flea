@@ -10,14 +10,14 @@ Flea 是iOS中对`UIAlertController`的替换方案，提供了友好、灵活�
 
 ## 截图
 
-![ActionSheet1](https://github.com/DanisFabric/Flea/blob/master/images/ActionSheet1.png)
-![ActionSheet2](https://github.com/DanisFabric/Flea/blob/master/images/ActionSheet2.png)
-![Alert1](https://github.com/DanisFabric/Flea/blob/master/images/Aler1.png)
-![Alert2](https://github.com/DanisFabric/Flea/blob/master/images/Alert2.png)
-![Notification1](https://github.com/DanisFabric/Flea/blob/master/images/Notification1.png)
-![Notification2](https://github.com/DanisFabric/Flea/blob/master/images/Notification2.png)
-![Custom1](https://github.com/DanisFabric/Flea/blob/master/images/Custom1.png)
-![Custom2](https://github.com/DanisFabric/Flea/blob/master/images/Custom2.png)
+![ActionSheet1](https://github.com/DanisFabric/Flea/blob/master/images/ActionSheet1.png =200)
+![ActionSheet2](https://github.com/DanisFabric/Flea/blob/master/images/ActionSheet2.png =200)
+![Alert1](https://github.com/DanisFabric/Flea/blob/master/images/Aler1.png =200)
+![Alert2](https://github.com/DanisFabric/Flea/blob/master/images/Alert2.png =200)
+![Notification1](https://github.com/DanisFabric/Flea/blob/master/images/Notification1.png =200)
+![Notification2](https://github.com/DanisFabric/Flea/blob/master/images/Notification2.png =200)
+![Custom1](https://github.com/DanisFabric/Flea/blob/master/images/Custom1.png =200)
+![Custom2](https://github.com/DanisFabric/Flea/blob/master/images/Custom2.png =200)
 ## 安装
 
 ### Carthage 

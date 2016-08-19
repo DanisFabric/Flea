@@ -58,6 +58,21 @@ class CustomTableViewController: UITableViewController {
             flea.cornerRadius = 4
             
             flea.fill(loginView).show()
+        case 3:
+            let shareView = ShareView()
+            shareView.addShareItem("Facebook", image: UIImage(named: "facebook")!, action: nil)
+            shareView.addShareItem("Twitter", image: UIImage(named: "twitter")!, action: nil)
+            shareView.addShareItem("Line", image: UIImage(named: "line")!, action: nil)
+            shareView.addShareItem("Instagram", image: UIImage(named: "instagram")!, action: nil)
+            shareView.addShareItem("Messenger", image: UIImage(named: "messenger")!, action: nil)
+            shareView.addShareItem("Whatsapp", image: UIImage(named: "whatsapp")!, action: nil)
+            shareView.addShareItem("Youtube", image: UIImage(named: "youtube")!, action: nil)
+            
+            let flea = Flea(type: .Custom)
+            flea.direction = .Bottom
+            flea.backgroundStyle = .Dark
+            
+            flea.fill(shareView).show()
         default:
             break
         }

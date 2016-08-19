@@ -11,6 +11,7 @@ Flea 是iOS中对`UIAlertController`的替换方案，提供了友好、灵活�
 ## 截图
 
 ![Default](https://github.com/DanisFabric/Flea/blob/master/images/default.png)
+![Custom](https://github.com/DanisFabric/Flea/blob/master/images/custom.png)
 
 ## 安装
 

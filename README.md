@@ -156,15 +156,15 @@ public func baseAt(tabBarController tabBarController: UITabBarController) -> Sel
 
 #### fill
 
-Flea 通过`fill(:_)`方法向弹框中指定内容，多次使用`fill(:_)`方法，只有最后一次生效。
+Flea 通过`fill(_:)`方法向弹框中指定内容，多次使用`fill(_:)`方法，只有最后一次生效。
 
 ```swift
 public func fill(view: UIView) -> Self
 ```
-> Flea的弹框的具体大小是根据`fill(:_)`内指定的view的size大小来决定的。
+> Flea的弹框的具体大小是根据`fill(_:)`内指定的view的size大小来决定的。
 
 
 #### stay
 
-`stay(:_)`为弹框指定停留时间，与直接设置duration的效果相同
+`stay(_:)`为弹框指定停留时间，与直接设置duration的效果相同
 

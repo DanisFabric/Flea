@@ -7,6 +7,39 @@
 //
 
 import UIKit
+import Flea
+
+class GuidePage: UIView {
+    let imageView = UIImageView()
+    let titleLabel = { () -> UILabel in
+        let label = UILabel()
+        label.textColor = FleaPalette.DarkGray
+        label.textAlignment = .Center
+        label.font = UIFont.boldSystemFontOfSize(17)
+        
+        return label
+    }()
+    let descriptionLabel = { () -> UILabel in
+        let label = UILabel()
+        label.textColor = FleaPalette.LightGray
+        label.textAlignment = .Center
+        label.font = UIFont.systemFontOfSize(13)
+        
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(descriptionLabel)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
 class GuideView: UIView {
     

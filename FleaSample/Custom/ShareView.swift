@@ -63,7 +63,7 @@ extension ShareView: FleaContentView {
         for itemView in itemViews {
             itemView.frame = CGRect(x: toEdge.horizontal + (margin.horizontal + PreferedItemWidth) * CGFloat(column), y: maxY + (margin.vertical + PreferedItemHeight) * CGFloat(row), width: PreferedItemWidth, height: PreferedItemHeight)
             column += 1
-            if column == maxColumn {
+            if column == maxColumn - 1 {
                 column = 0
                 row += 1
             }

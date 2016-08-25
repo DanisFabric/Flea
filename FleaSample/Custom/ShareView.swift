@@ -9,26 +9,19 @@
 import UIKit
 import Flea
 
-private let PreferedItemWidth: CGFloat = 60
-private let PreferedItemHeight: CGFloat = 80
-
 class ShareItemView: UIView {
     let imageView = UIImageView()
-    let textLabel = { () -> UILabel in
-        let label = UILabel()
-        label.textColor = FleaPalette.DarkGray
-        label.font = UIFont.systemFontOfSize(13)
-        label.textAlignment = .Center
-        
-        return label
-    }()
+
     var didTapAction: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = UIColor.whiteColor()
+        
+        layer.cornerRadius = 4
+        layer.masksToBounds = true
         addSubview(imageView)
-        addSubview(textLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,49 +31,89 @@ class ShareItemView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        imageView.frame = CGRect(x: 0, y: 0, width: PreferedItemWidth, height: PreferedItemWidth)
-        textLabel.frame = CGRect(x: 0, y: PreferedItemWidth, width: PreferedItemWidth, height: PreferedItemHeight - PreferedItemWidth)
+        imageView.frame = CGRectInset(bounds, bounds.width * 0.2, bounds.height * 0.2)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        
+        backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.1)
+    }
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        
+        backgroundColor = UIColor.clearColor()
+    }
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        super.touchesCancelled(touches, withEvent: event)
+        
+        backgroundColor = UIColor.clearColor()
     }
 }
 
 class ShareView: UIView {
+    var preferedColumns = 4
     var itemViews = [ShareItemView]()
     
+    let cancelButton = { () -> UIButton in
+        let button = UIButton(type: .System)
+        button.backgroundColor = UIColor.whiteColor()
+        button.tintColor = FleaPalette.DarkGray
+        button.setTitle("Cancel", forState: .Normal)
+        
+        return button
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(cancelButton)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension ShareView: FleaContentView {
     func prepareInView(view: UIView) {
-        let margin = UIOffset(horizontal: 20, vertical: 20)
+        backgroundColor = FleaPalette.DarkWhite
+        
+        
+        let margin = UIOffset(horizontal: 10, vertical: 20)
         let toEdge = UIOffset(horizontal: 20, vertical: 20)
         
         var maxY = toEdge.vertical
         let contentWidth = view.bounds.width - toEdge.horizontal * 2
         
-        let maxColumn = Int(contentWidth / PreferedItemWidth)
+        let itemSize = { () -> CGSize in
+            let width = (contentWidth - margin.horizontal * CGFloat(preferedColumns - 1)) / CGFloat(preferedColumns)
+            
+            return CGSize(width: width, height: width)
+        }()
+        
         var row = 0
         var column = 0
         
         for itemView in itemViews {
-            itemView.frame = CGRect(x: toEdge.horizontal + (margin.horizontal + PreferedItemWidth) * CGFloat(column), y: maxY + (margin.vertical + PreferedItemHeight) * CGFloat(row), width: PreferedItemWidth, height: PreferedItemHeight)
+            itemView.frame = CGRect(x: toEdge.horizontal + (margin.horizontal + itemSize.width) * CGFloat(column), y: maxY, width: itemSize.width, height: itemSize.height)
             column += 1
-            if column == maxColumn - 1 {
+            if column == preferedColumns {
                 column = 0
                 row += 1
+                maxY = itemView.frame.maxY + margin.vertical
             }
         }
-        if let lastItemView = itemViews.last {
-            maxY = lastItemView.frame.maxY
-        }
-        maxY += toEdge.vertical
+        maxY += toEdge.vertical + itemSize.height
+        cancelButton.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
+        maxY += 44
         
         self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
     }
 }
 
 extension ShareView {
-    func addShareItem(title: String, image: UIImage, action: (() -> Void)?) {
+    func addShareItem(image: UIImage, action: (() -> Void)?) {
         let itemView = ShareItemView()
-        itemView.textLabel.text = title
         itemView.imageView.image = image
         itemView.didTapAction = action
         

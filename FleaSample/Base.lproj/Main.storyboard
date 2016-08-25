@@ -135,7 +135,7 @@
         <scene sceneID="Wdq-Qr-zKJ">
             <objects>
                 <navigationController id="Gj1-Q2-LRi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alert" id="8Wg-1I-19B"/>
+                    <tabBarItem key="tabBarItem" title="Alert" image="tab-item" id="8Wg-1I-19B"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iEa-je-xBw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -312,7 +312,7 @@
         <scene sceneID="iUU-iR-OH5">
             <objects>
                 <navigationController id="jeD-1Q-lSr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Custom" id="gTC-ge-FzF"/>
+                    <tabBarItem key="tabBarItem" title="Custom" image="tab-item" id="gTC-ge-FzF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CHs-yA-FoV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -329,7 +329,7 @@
         <scene sceneID="pL9-U0-e89">
             <objects>
                 <navigationController id="lnW-0F-ItA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notification" id="Bld-3P-Zy9"/>
+                    <tabBarItem key="tabBarItem" title="Notification" image="tab-item" id="Bld-3P-Zy9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iic-xE-g8q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -366,7 +366,7 @@
         <scene sceneID="I8Q-DD-c0c">
             <objects>
                 <navigationController id="Rhy-r7-Ho4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="ActionSheet" id="zPB-5R-Ehr"/>
+                    <tabBarItem key="tabBarItem" title="ActionSheet" image="tab-item" id="zPB-5R-Ehr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HsW-jR-0CP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -380,4 +380,7 @@
             <point key="canvasLocation" x="247" y="440"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab-item" width="20" height="20"/>
+    </resources>
 </document>

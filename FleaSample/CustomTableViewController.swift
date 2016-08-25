@@ -72,6 +72,7 @@ class CustomTableViewController: UITableViewController {
             flea.direction = .Bottom
             flea.backgroundStyle = .Dark
             
+            shareView.flea = flea
             flea.fill(shareView).show()
         default:
             break

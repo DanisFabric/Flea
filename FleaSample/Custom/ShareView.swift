@@ -36,21 +36,22 @@ class ShareItemView: UIView {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.1)
+        backgroundColor = UIColor.lightGrayColor()
     }
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.whiteColor()
     }
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         super.touchesCancelled(touches, withEvent: event)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.whiteColor()
     }
 }
 
 class ShareView: UIView {
+    weak var flea: Flea?
     var preferedColumns = 4
     var itemViews = [ShareItemView]()
     
@@ -66,11 +67,16 @@ class ShareView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        cancelButton.addTarget(self, action: #selector(onCancel(_:)), forControlEvents: .TouchUpInside)
         addSubview(cancelButton)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func onCancel(sender: UIButton) {
+        flea?.dismiss()
     }
 }
 

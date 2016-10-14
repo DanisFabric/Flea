@@ -27,10 +27,10 @@ class ActionSheetTableViewController: UITableViewController {
     }
 
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).row {
         case 0:
-            let defaultActionSheet = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
+            let defaultActionSheet = Flea(type: .actionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
             defaultActionSheet.addAction("Sorry, I don't love it", action: { 
                 
             })
@@ -40,7 +40,7 @@ class ActionSheetTableViewController: UITableViewController {
             defaultActionSheet.show()
             break
         case 1:
-            let actionFlea = Flea(type: .ActionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
+            let actionFlea = Flea(type: .actionSheet(title: "Do you love Flea", subTitle: "If you love it, you can star Flea on GitHub"))
             actionFlea.titleColor = FleaPalette.DarkGray
             actionFlea.subTitleColor = FleaPalette.Green
             actionFlea.addAction("Sorry, I don't love it", color: FleaPalette.Blue, action: { 

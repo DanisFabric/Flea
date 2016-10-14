@@ -7,10 +7,30 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 struct FleaActionItem {
     var title = ""
-    var color = UIColor.blueColor()
+    var color = UIColor.blue
     var action: (() -> Void)?
 }
 
@@ -39,8 +59,8 @@ class FleaActionView: UIView {
     var titleLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.DarkGray
-        label.textAlignment = .Center
-        label.font = UIFont.boldSystemFontOfSize(17)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.numberOfLines = 0
         
         return label
@@ -48,17 +68,17 @@ class FleaActionView: UIView {
     var subTitleLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.LightGray
-        label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(13)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
         
         return label
     }()
-    private var buttons = [FleaActionButton]()
+    fileprivate var buttons = [FleaActionButton]()
 }
 
 extension FleaActionView: FleaContentView {
-    func prepareInView(view: UIView) {
+    func prepareInView(_ view: UIView) {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
@@ -72,11 +92,11 @@ extension FleaActionView: FleaContentView {
         subTitleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
         subTitleLabel.sizeToFit()
         
-        if titleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+        if titleLabel.text?.lengthOfBytes(using: String.Encoding.utf8) > 0 {
             titleLabel.frame = CGRect(x: textMargin, y: textMargin, width: textWidth, height: titleLabel.frame.height)
             maxY = titleLabel.frame.maxY
         }
-        if subTitleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+        if subTitleLabel.text?.lengthOfBytes(using: String.Encoding.utf8) > 0 {
             subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
             maxY = subTitleLabel.frame.maxY
         }
@@ -86,29 +106,29 @@ extension FleaActionView: FleaContentView {
         self.addGestureRecognizer(tap)
         
         for item in actionItems {
-            let button = FleaActionButton(type: .Custom)
+            let button = FleaActionButton(type: .custom)
             
-            button.titleLabel?.font = UIFont.systemFontOfSize(15)
-            button.setTitle(item.title, forState: .Normal)
-            button.setTitleColor(item.color, forState: .Normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            button.setTitle(item.title, for: UIControlState())
+            button.setTitleColor(item.color, for: UIControlState())
             button.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
             maxY += 44
             
             print("Add Action")
-            button.addTarget(self, action: #selector(onTapAction(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(onTapAction(_:)), for: .touchUpInside)
             addSubview(button)
             buttons.append(button)
         }
         self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
     }
-    func onTap(sender: AnyObject) {
+    func onTap(_ sender: AnyObject) {
         print("点我")
     }
-    func onTapAction(sender: AnyObject) {
+    func onTapAction(_ sender: AnyObject) {
         print("点Button")
         
         let button = sender as! FleaActionButton
-        let index = buttons.indexOf(button)!
+        let index = buttons.index(of: button)!
         let item = actionItems[index]
         
         item.action?()
@@ -143,19 +163,19 @@ class FleaActionButton: UIButton {
         line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
         backgroundColor = FleaPalette.DarkWhite
     }
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
 }

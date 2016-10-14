@@ -14,16 +14,16 @@ class GuidePage: UIView {
     let titleLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.DarkGray
-        label.textAlignment = .Center
-        label.font = UIFont.boldSystemFontOfSize(17)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         
         return label
     }()
     let descriptionLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.LightGray
-        label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(13)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 13)
         
         return label
     }()
@@ -48,7 +48,7 @@ class GuideView: UIView {
     
     let scrollView = { () -> UIScrollView in
         let scrollView = UIScrollView()
-        scrollView.pagingEnabled = true
+        scrollView.isPagingEnabled = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         
@@ -83,7 +83,7 @@ class GuideView: UIView {
 }
 
 extension GuideView {
-    func addPage(image: UIImage) {
+    func addPage(_ image: UIImage) {
         let imageView = UIImageView()
         imageView.image = image
         

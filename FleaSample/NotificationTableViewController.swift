@@ -25,18 +25,18 @@ class NotificationTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).row {
         case 0:
-            let defaultNotificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
+            let defaultNotificationFlea = Flea(type: .notification(title: "Hello, welcome to use Flea"))
             defaultNotificationFlea.setNotificationAction("Thanks", action: { 
                 
             })
-            defaultNotificationFlea.baseAt(tabBarController: tabBarController!).stay(2).show()
+            defaultNotificationFlea.baseAt(tabBarController!).stay(2).show()
         case 1:
-            let notificationFlea = Flea(type: .Notification(title: "Hello, welcome to use Flea"))
-            notificationFlea.titleColor = UIColor.whiteColor()
-            notificationFlea.style = .Normal(FleaPalette.Green)
+            let notificationFlea = Flea(type: .notification(title: "Hello, welcome to use Flea"))
+            notificationFlea.titleColor = UIColor.white
+            notificationFlea.style = .normal(FleaPalette.Green)
             
             notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).show()
         default:

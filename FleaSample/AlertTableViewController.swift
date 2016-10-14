@@ -26,10 +26,10 @@ class AlertTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).row {
         case 0:
-            let defaultAlertFlea = Flea(type: .Alert(title: "Do you love Flea", subTitle: "If you love Flea, you may start it on GitHub"))
+            let defaultAlertFlea = Flea(type: .alert(title: "Do you love Flea", subTitle: "If you love Flea, you may start it on GitHub"))
             defaultAlertFlea.addAction("No, thanks", action: { 
                 
             })
@@ -38,7 +38,7 @@ class AlertTableViewController: UITableViewController {
             })
             defaultAlertFlea.show()
         case 1:
-            let alert = Flea(type: .Alert(title: "Do you love Flea", subTitle: "If you love Flea, you may star it on GitHub"))
+            let alert = Flea(type: .alert(title: "Do you love Flea", subTitle: "If you love Flea, you may star it on GitHub"))
             alert.addAction("No, thanks", action: { 
                 
             })

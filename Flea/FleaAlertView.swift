@@ -7,6 +7,26 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class FleaAlertView: UIView {
     weak var flea: Flea?
@@ -33,8 +53,8 @@ class FleaAlertView: UIView {
     var titleLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.DarkGray
-        label.textAlignment = .Center
-        label.font = UIFont.boldSystemFontOfSize(17)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.numberOfLines = 0
         
         return label
@@ -42,14 +62,14 @@ class FleaAlertView: UIView {
     var subTitleLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = FleaPalette.LightGray
-        label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(13)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
         
         return label
     }()
     
-    private var buttons = [FleaAlertButton]()
+    fileprivate var buttons = [FleaAlertButton]()
     
     let contentLine = { () -> UIView in
         let line = UIView()
@@ -68,7 +88,7 @@ class FleaAlertView: UIView {
 }
 
 extension FleaAlertView: FleaContentView {
-    func prepareInView(view: UIView) {
+    func prepareInView(_ view: UIView) {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
@@ -83,56 +103,56 @@ extension FleaAlertView: FleaContentView {
         subTitleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
         subTitleLabel.sizeToFit()
         
-        if titleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+        if titleLabel.text?.lengthOfBytes(using: String.Encoding.utf8) > 0 {
             titleLabel.frame = CGRect(x: textMargin, y: textMargin, width: textWidth, height: titleLabel.frame.height)
             maxY = titleLabel.frame.maxY
         }
-        if subTitleLabel.text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+        if subTitleLabel.text?.lengthOfBytes(using: String.Encoding.utf8) > 0 {
             subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
             maxY = subTitleLabel.frame.maxY
         }
         maxY += textMargin
         
         if actionItems.count == 2 {
-            let button1 = FleaAlertButton(type: .Custom)
-            let button2 = FleaAlertButton(type: .Custom)
-            button1.titleLabel?.font = UIFont.systemFontOfSize(15)
-            button2.titleLabel?.font = UIFont.systemFontOfSize(15)
+            let button1 = FleaAlertButton(type: .custom)
+            let button2 = FleaAlertButton(type: .custom)
+            button1.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            button2.titleLabel?.font = UIFont.systemFont(ofSize: 15)
 
-            button1.setTitle(actionItems[0].title, forState: .Normal)
-            button1.setTitleColor(actionItems[0].color, forState: .Normal)
-            button2.setTitle(actionItems[1].title, forState: .Normal)
-            button2.setTitleColor(actionItems[1].color, forState: .Normal)
+            button1.setTitle(actionItems[0].title, for: UIControlState())
+            button1.setTitleColor(actionItems[0].color, for: UIControlState())
+            button2.setTitle(actionItems[1].title, for: UIControlState())
+            button2.setTitleColor(actionItems[1].color, for: UIControlState())
             
             contentLine.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 0.5)
             buttonLine.frame = CGRect(x: contentWidth / 2, y: maxY, width: 0.5, height: 44)
-            button1.line.hidden = true
-            button2.line.hidden = true
+            button1.line.isHidden = true
+            button2.line.isHidden = true
             
             button1.frame = CGRect(x: 0, y: maxY, width: contentWidth/2, height: 44)
             button2.frame = CGRect(x: contentWidth/2, y: maxY, width: contentWidth/2, height: 44)
             maxY += 44
             
-            button1.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
-            button2.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
+            button1.addTarget(self, action: #selector(onTapButton(_:)), for: .touchUpInside)
+            button2.addTarget(self, action: #selector(onTapButton(_:)), for: .touchUpInside)
             
             addSubview(button1)
             addSubview(button2)
             addSubview(contentLine)
             addSubview(buttonLine)
             
-            buttons.appendContentsOf([button1,button2])
+            buttons.append(contentsOf: [button1,button2])
         }else {
             for item in actionItems {
-                let button = FleaAlertButton(type: .Custom)
-                button.titleLabel?.font = UIFont.systemFontOfSize(15)
+                let button = FleaAlertButton(type: .custom)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
 
-                button.setTitle(item.title, forState: .Normal)
-                button.setTitleColor(item.color, forState: .Normal)
+                button.setTitle(item.title, for: UIControlState())
+                button.setTitleColor(item.color, for: UIControlState())
                 button.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 44)
                 maxY += 44
                 
-                button.addTarget(self, action: #selector(onTapButton(_:)), forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(onTapButton(_:)), for: .touchUpInside)
                 addSubview(button)
                 buttons.append(button)
             }
@@ -140,8 +160,8 @@ extension FleaAlertView: FleaContentView {
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)
     }
-    @objc private func onTapButton(sender: FleaAlertButton) {
-        let index = buttons.indexOf(sender)!
+    @objc fileprivate func onTapButton(_ sender: FleaAlertButton) {
+        let index = buttons.index(of: sender)!
         let item = actionItems[index]
             
         item.action?()
@@ -175,20 +195,20 @@ class FleaAlertButton: UIButton {
         line.frame = CGRect(x: margin, y: 0, width: bounds.width - margin * 2, height: 0.5)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
         backgroundColor = FleaPalette.DarkWhite
     }
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
 
 }

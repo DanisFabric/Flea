@@ -9,64 +9,64 @@
 import UIKit
 
 public enum Direction {
-    case Top
-    case Left
-    case Bottom
-    case Right
+    case top
+    case left
+    case bottom
+    case right
 }
 
 public enum Anchor {
-    case Edge
-    case Center
+    case edge
+    case center
 }
 
 public enum FleaStyle {
-    case Normal(UIColor)
-    case Blur(UIBlurEffectStyle)
+    case normal(UIColor)
+    case blur(UIBlurEffectStyle)
 }
 
 public enum FleaBackgroundStyle {
-    case Dark
-    case Clear
-    case None
+    case dark
+    case clear
+    case none
 }
 
 public enum Type {
-    case Custom
-    case ActionSheet(title: String?, subTitle: String?)
-    case Alert(title: String?, subTitle: String?)
-    case Notification(title: String?)
+    case custom
+    case actionSheet(title: String?, subTitle: String?)
+    case alert(title: String?, subTitle: String?)
+    case notification(title: String?)
 }
 
 public protocol FleaContentView {
-    func prepareInView(view: UIView)
+    func prepareInView(_ view: UIView)
 }
 
-public class Flea: UIView {
-    public private(set) var type = Type.Custom
-    public var direction = Direction.Top
-    public var anchor = Anchor.Edge
-    public var style = FleaStyle.Normal(UIColor.whiteColor())
-    public var backgroundStyle = FleaBackgroundStyle.Clear
+open class Flea: UIView {
+    open fileprivate(set) var type = Type.custom
+    open var direction = Direction.top
+    open var anchor = Anchor.edge
+    open var style = FleaStyle.normal(UIColor.white)
+    open var backgroundStyle = FleaBackgroundStyle.clear
     
-    public var offset = UIOffset()
-    public var spring = true
-    public var cornerRadius: CGFloat = 0
-    public var duration = 0.0
+    open var offset = UIOffset()
+    open var spring = true
+    open var cornerRadius: CGFloat = 0
+    open var duration = 0.0
     
     var containerView = UIView()
     var contentView: UIView?
 
-    private var baseView: UIView?
-    private var baseNavigationConroller: UINavigationController?
-    private var baseTabBarController: UITabBarController?
-    private var baseBehindView: UIView?
+    fileprivate var baseView: UIView?
+    fileprivate var baseNavigationConroller: UINavigationController?
+    fileprivate var baseTabBarController: UITabBarController?
+    fileprivate var baseBehindView: UIView?
     
-    private var animationDuration = 0.3
-    private var animationSpringDuration = 0.5
+    fileprivate var animationDuration = 0.3
+    fileprivate var animationSpringDuration = 0.5
     
-    private var initialOrigin = CGPoint()
-    private var finalOrigin = CGPoint()
+    fileprivate var initialOrigin = CGPoint()
+    fileprivate var finalOrigin = CGPoint()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,28 +79,28 @@ public class Flea: UIView {
         
         self.type = type
         switch type {
-        case .Custom:
+        case .custom:
             break
-        case .ActionSheet(let title, let subTitle):
-            direction = .Bottom
-            backgroundStyle = .Dark
+        case .actionSheet(let title, let subTitle):
+            direction = .bottom
+            backgroundStyle = .dark
             contentView = FleaActionView()
             (contentView as! FleaActionView).title = title
             (contentView as! FleaActionView).subTitle = subTitle
             (contentView as! FleaActionView).flea = self
-        case .Alert(let title, let subTitle):
-            direction = .Top
-            backgroundStyle = .Dark
-            anchor = .Center
+        case .alert(let title, let subTitle):
+            direction = .top
+            backgroundStyle = .dark
+            anchor = .center
             cornerRadius = 4
             contentView = FleaAlertView()
             (contentView as! FleaAlertView).title = title
             (contentView as! FleaAlertView).subTitle = subTitle
             (contentView as! FleaAlertView).flea = self
-        case .Notification(let title):
-            direction = .Top
-            backgroundStyle = .None
-            style = .Blur(.Dark)
+        case .notification(let title):
+            direction = .top
+            backgroundStyle = .none
+            style = .blur(.dark)
             contentView = FleaNotificationView()
             (contentView as! FleaNotificationView).title = title
             (contentView as! FleaNotificationView).flea = self
@@ -117,7 +117,7 @@ public class Flea: UIView {
         addGestureRecognizer(tap)
     }
     
-    func onTap(tap: UITapGestureRecognizer) {
+    func onTap(_ tap: UITapGestureRecognizer) {
         dismiss()
     }
     
@@ -125,12 +125,12 @@ public class Flea: UIView {
         guard let contentView = contentView else {
             return
         }
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         switch style {
-        case .Normal(let color):
+        case .normal(let color):
             containerView = UIView()
             containerView.backgroundColor = color
-        case .Blur(let blurEffectStyle):
+        case .blur(let blurEffectStyle):
             let blurEffect = UIBlurEffect(style: blurEffectStyle)
             containerView = UIVisualEffectView(effect: blurEffect)
         }
@@ -146,39 +146,39 @@ public class Flea: UIView {
         
         // 配置初始位置／配置最终位置
         switch direction {
-        case .Top:
+        case .top:
             initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
-            if anchor == .Edge {
+            if anchor == .edge {
                 finalOrigin = CGPoint(x: initialOrigin.x, y: offset.vertical)
             }
-        case .Left:
+        case .left:
             initialOrigin = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
-            if anchor == .Edge {
+            if anchor == .edge {
                 finalOrigin = CGPoint(x: offset.horizontal, y: initialOrigin.y)
             }
-        case .Bottom:
+        case .bottom:
             initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
-            if anchor == .Edge {
+            if anchor == .edge {
                 finalOrigin = CGPoint(x: initialOrigin.x, y: bounds.height - containerView.bounds.height + offset.vertical)
             }
-        case .Right:
+        case .right:
             initialOrigin = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
-            if anchor == .Edge {
+            if anchor == .edge {
                 finalOrigin = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialOrigin.y)
             }
         }
-        if anchor == .Center {
+        if anchor == .center {
             finalOrigin = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
         }
         
         containerView.frame.origin = initialOrigin
     }
     
-    public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        if backgroundStyle == .None && !CGRectContainsPoint(containerView.frame, point) {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if backgroundStyle == .none && !containerView.frame.contains(point) {
             return nil
         }else {
-            return super.hitTest(point, withEvent: event)
+            return super.hitTest(point, with: event)
         }
     }
 }
@@ -200,28 +200,28 @@ extension Flea {
             
             return
         }
-        let window = UIApplication.sharedApplication().keyWindow!
+        let window = UIApplication.shared.keyWindow!
         show(inView: window)
     }
-    private func show(inNavigationController navigationController: UINavigationController) {
-        if navigationController.navigationBar.translucent && anchor == .Edge && direction == .Top {
+    fileprivate func show(inNavigationController navigationController: UINavigationController) {
+        if navigationController.navigationBar.isTranslucent && anchor == .edge && direction == .top {
             baseBehindView = navigationController.navigationBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
-            if !UIApplication.sharedApplication().statusBarHidden {
-                offset.vertical += UIApplication.sharedApplication().statusBarFrame.height
+            if !UIApplication.shared.isStatusBarHidden {
+                offset.vertical += UIApplication.shared.statusBarFrame.height
             }
         }
         show(inView: navigationController.view)
     }
-    private func show(inTabBarController tabBarController: UITabBarController) {
-        if tabBarController.tabBar.translucent && anchor == .Edge && direction == .Bottom {
+    fileprivate func show(inTabBarController tabBarController: UITabBarController) {
+        if tabBarController.tabBar.isTranslucent && anchor == .edge && direction == .bottom {
             baseBehindView = tabBarController.tabBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
         }
         show(inView: tabBarController.view)
     }
     
-    private func show(inView view: UIView) {
+    fileprivate func show(inView view: UIView) {
         self.frame = view.bounds
         view.addSubview(self)
         if let baseBehindView = baseBehindView {
@@ -234,23 +234,23 @@ extension Flea {
         
         let animations = {
             self.containerView.frame.origin = self.finalOrigin
-            if self.backgroundStyle == .Dark {
-                self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+            if self.backgroundStyle == .dark {
+                self.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             }
         }
         if spring {
-            UIView.animateWithDuration(animationSpringDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .AllowUserInteraction, animations: {
+            UIView.animate(withDuration: animationSpringDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .allowUserInteraction, animations: {
                 
                 animations()
                 
                 }, completion: nil)
         }else {
-            UIView.animateWithDuration(animationDuration, animations: { 
+            UIView.animate(withDuration: animationDuration, animations: { 
                 animations()
             })
         }
         if duration > 0 {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * duration)), dispatch_get_main_queue(), {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * duration)) / Double(NSEC_PER_SEC), execute: {
                 self.dismiss()
             })
         }
@@ -258,16 +258,16 @@ extension Flea {
     
     
     public func dismiss() {
-        UIView.animateWithDuration(animationDuration, animations: { 
+        UIView.animate(withDuration: animationDuration, animations: { 
             
             self.containerView.frame.origin = self.initialOrigin
-            self.backgroundColor = UIColor.clearColor()
+            self.backgroundColor = UIColor.clear
             
-            }) { (_) in
+            }, completion: { (_) in
                 self.removeFromSuperview()
-        }
+        }) 
     }
-    public func stay(duration: Double) -> Flea {
+    public func stay(_ duration: Double) -> Flea {
         self.duration = duration
         
         return self
@@ -275,7 +275,7 @@ extension Flea {
 }
 
 extension Flea {
-    public func baseAt(view view: UIView, behind: UIView? = nil) -> Self {
+    public func baseAt(_ view: UIView, behind: UIView? = nil) -> Self {
         baseView = view
         baseBehindView = behind
         
@@ -286,8 +286,8 @@ extension Flea {
         
         return self
     }
-    public func baseAt(tabBarController tabBarController: UITabBarController) -> Self {
-        direction = .Bottom
+    public func baseAt(_ tabBarController: UITabBarController) -> Self {
+        direction = .bottom
         baseTabBarController = tabBarController
         
         return self
@@ -295,7 +295,7 @@ extension Flea {
 }
 
 extension Flea {
-    public func fill(view: UIView) -> Self {
+    public func fill(_ view: UIView) -> Self {
         contentView = view
         contentView!.frame = CGRect(origin: CGPoint(), size: contentView!.frame.size)
         
@@ -305,20 +305,20 @@ extension Flea {
 
 // MARK: - [Alert][Action][Notification] Configuration
 extension Flea {
-    public func addAction(title: String, color: UIColor = FleaPalette.Blue, action: (() -> Void)?) {
+    public func addAction(_ title: String, color: UIColor = FleaPalette.Blue, action: (() -> Void)?) {
         let item = FleaActionItem(title: title, color: color, action: action)
         switch type {
-        case .ActionSheet:
+        case .actionSheet:
             let actionView = contentView as! FleaActionView
             actionView.actionItems.append(item)
-        case .Alert:
+        case .alert:
             let alertView = contentView as! FleaAlertView
             alertView.actionItems.append(item)
         default:
             break
         }
     }
-    public func setNotificationAction(title: String, color: UIColor = UIColor.whiteColor(), action: (() -> Void)?) {
+    public func setNotificationAction(_ title: String, color: UIColor = UIColor.white, action: (() -> Void)?) {
         let item = FleaActionItem(title: title, color: color, action: action)
         let notificationView = contentView as! FleaNotificationView
         notificationView.actionItem = item
@@ -327,11 +327,11 @@ extension Flea {
     public var titleColor: UIColor? {
         get {
             switch type {
-            case .ActionSheet:
+            case .actionSheet:
                 return (contentView as! FleaActionView).titleLabel.textColor
-            case .Alert:
+            case .alert:
                 return (contentView as! FleaAlertView).titleLabel.textColor
-            case .Notification:
+            case .notification:
                 return (contentView as! FleaNotificationView).titleLabel.textColor
             default:
                 return nil
@@ -339,11 +339,11 @@ extension Flea {
         }
         set {
             switch type {
-            case .ActionSheet:
+            case .actionSheet:
                 (contentView as! FleaActionView).titleLabel.textColor = newValue
-            case .Alert:
+            case .alert:
                 (contentView as! FleaAlertView).titleLabel.textColor = newValue
-            case .Notification:
+            case .notification:
                 (contentView as! FleaNotificationView).titleLabel.textColor = newValue
                 (contentView as! FleaNotificationView).closeButton.tintColor = newValue // CloseButton use the same color of TitleLabel
             default:
@@ -354,9 +354,9 @@ extension Flea {
     public var subTitleColor: UIColor? {
         get {
             switch type {
-            case .ActionSheet:
+            case .actionSheet:
                 return (contentView as! FleaActionView).subTitleLabel.textColor
-            case .Alert:
+            case .alert:
                 return (contentView as! FleaAlertView).subTitleLabel.textColor
             default:
                 return nil
@@ -364,9 +364,9 @@ extension Flea {
         }
         set {
             switch type {
-            case .ActionSheet:
+            case .actionSheet:
                 (contentView as! FleaActionView).subTitleLabel.textColor = newValue
-            case .Alert:
+            case .alert:
                 (contentView as! FleaAlertView).subTitleLabel.textColor = newValue
             default:
                 break
@@ -377,13 +377,13 @@ extension Flea {
 }
 
 extension Flea: UIGestureRecognizerDelegate {
-    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard backgroundStyle != .None else {
+    open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard backgroundStyle != .none else {
             return false
         }
-        let location = gestureRecognizer.locationInView(self)
+        let location = gestureRecognizer.location(in: self)
         
-        if CGRectContainsPoint(containerView.frame, location) {
+        if containerView.frame.contains(location) {
             return false
         }
         return true

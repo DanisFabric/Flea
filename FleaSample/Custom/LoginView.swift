@@ -14,8 +14,8 @@ class LoginView: UIView {
     let titleLabel = { () -> UILabel in
         let label = UILabel()
         label.text = "Welcome to Flea"
-        label.textAlignment = .Center
-        label.font = UIFont.boldSystemFontOfSize(20)
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = FleaPalette.DarkGray
         
         return label
@@ -25,10 +25,10 @@ class LoginView: UIView {
         let field = UITextField()
         field.textColor = FleaPalette.DarkGray
         field.placeholder = "Username"
-        field.textAlignment = .Center
+        field.textAlignment = .center
         field.backgroundColor = FleaPalette.DarkWhite
         field.layer.cornerRadius = 4
-        field.font = UIFont.systemFontOfSize(15)
+        field.font = UIFont.systemFont(ofSize: 15)
         
         return field
     }()
@@ -36,21 +36,21 @@ class LoginView: UIView {
     let passwordField = { () -> UITextField in
         let field = UITextField()
         field.textColor = FleaPalette.DarkGray
-        field.secureTextEntry = true
+        field.isSecureTextEntry = true
         field.placeholder = "Password"
-        field.textAlignment = .Center
+        field.textAlignment = .center
         field.backgroundColor = FleaPalette.DarkWhite
         field.layer.cornerRadius = 4
-        field.font = UIFont.systemFontOfSize(15)
+        field.font = UIFont.systemFont(ofSize: 15)
         
         return field
     }()
     
     let confirmButton = { () -> UIButton in
-        let button = UIButton(type: .System)
+        let button = UIButton(type: .system)
         button.backgroundColor = FleaPalette.Blue
-        button.tintColor = UIColor.whiteColor()
-        button.setTitle("Sign In", forState: .Normal)
+        button.tintColor = UIColor.white
+        button.setTitle("Sign In", for: UIControlState())
         
         return button
     }()

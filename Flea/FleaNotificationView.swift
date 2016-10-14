@@ -22,46 +22,46 @@ class FleaNotificationView: UIView {
     
     var actionItem: FleaActionItem? {
         didSet {
-            actionButton.setTitle(actionItem?.title, forState: .Normal)
-            actionButton.setTitleColor(actionItem?.color, forState: .Normal)
+            actionButton.setTitle(actionItem?.title, for: UIControlState())
+            actionButton.setTitleColor(actionItem?.color, for: UIControlState())
         }
     }
     
     var titleLabel = { () -> UILabel in
         let label = UILabel()
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(15)
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 15)
         label.numberOfLines = 0
         
         return label
     }()
     var closeButton = { () -> UIButton in
-        let button = UIButton(type: .System)
+        let button = UIButton(type: .system)
         
-        let icon = UIImage(named: "flea-close", inBundle: NSBundle(forClass: FleaNotificationView.self), compatibleWithTraitCollection: nil)
-        button.tintColor = UIColor.whiteColor()
-        button.setImage(icon, forState: .Normal)
+        let icon = UIImage(named: "flea-close", in: Bundle(for: FleaNotificationView.self), compatibleWith: nil)
+        button.tintColor = UIColor.white
+        button.setImage(icon, for: UIControlState())
         
         return button
     }()
     var actionButton = { () -> UIButton in
-        let button = UIButton(type: .System)
+        let button = UIButton(type: .system)
         
         return button
     }()
     
-    @objc private func onClose(sender: UIButton) {
+    @objc fileprivate func onClose(_ sender: UIButton) {
         flea?.dismiss()
     }
 }
 
 extension FleaNotificationView: FleaContentView {
-    func prepareInView(view: UIView) {
+    func prepareInView(_ view: UIView) {
         addSubview(closeButton)
         addSubview(titleLabel)
         addSubview(actionButton)
-        closeButton.addTarget(self, action: #selector(onClose(_:)), forControlEvents: .TouchUpInside)
+        closeButton.addTarget(self, action: #selector(onClose(_:)), for: .touchUpInside)
         
         let size = CGSize(width: view.bounds.width, height: 44)
         

@@ -26,35 +26,35 @@ class CustomTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch (indexPath as NSIndexPath).row {
         case 0:
             let guideView = GuideView(frame: CGRect(x: 0, y: 0, width: 280, height: 360))
             guideView.addPage(UIImage(named: "guide-0")!)
             guideView.addPage(UIImage(named: "guide-1")!)
             
-            let flea = Flea(type: .Custom)
-            flea.anchor = .Center
-            flea.direction = .Top
-            flea.backgroundStyle = .Dark
+            let flea = Flea(type: .custom)
+            flea.anchor = .center
+            flea.direction = .top
+            flea.backgroundStyle = .dark
             flea.cornerRadius = 4
             
             flea.fill(guideView).show()
         case 1:
             let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
             
-            let flea = Flea(type: .Custom)
-            flea.direction = .Top
-            flea.backgroundStyle = .Dark
+            let flea = Flea(type: .custom)
+            flea.direction = .top
+            flea.backgroundStyle = .dark
             
             flea.fill(loginView).show()
         case 2:
             let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width * 0.8, height: 250))
             
-            let flea = Flea(type: .Custom)
-            flea.direction = .Top
-            flea.anchor = .Center
-            flea.backgroundStyle = .Dark
+            let flea = Flea(type: .custom)
+            flea.direction = .top
+            flea.anchor = .center
+            flea.backgroundStyle = .dark
             flea.cornerRadius = 4
             
             flea.fill(loginView).show()
@@ -68,9 +68,9 @@ class CustomTableViewController: UITableViewController {
             shareView.addShareItem(UIImage(named: "whatsapp")!, action: nil)
             shareView.addShareItem(UIImage(named: "youtube")!, action: nil)
             
-            let flea = Flea(type: .Custom)
-            flea.direction = .Bottom
-            flea.backgroundStyle = .Dark
+            let flea = Flea(type: .custom)
+            flea.direction = .bottom
+            flea.backgroundStyle = .dark
             
             shareView.flea = flea
             flea.fill(shareView).show()

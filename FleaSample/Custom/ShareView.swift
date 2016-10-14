@@ -17,7 +17,7 @@ class ShareItemView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         layer.cornerRadius = 4
         layer.masksToBounds = true
@@ -31,22 +31,22 @@ class ShareItemView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        imageView.frame = CGRectInset(bounds, bounds.width * 0.2, bounds.height * 0.2)
+        imageView.frame = bounds.insetBy(dx: bounds.width * 0.2, dy: bounds.height * 0.2)
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
-        backgroundColor = UIColor.lightGrayColor()
+        backgroundColor = UIColor.lightGray
     }
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
 }
 
@@ -56,10 +56,10 @@ class ShareView: UIView {
     var itemViews = [ShareItemView]()
     
     let cancelButton = { () -> UIButton in
-        let button = UIButton(type: .System)
-        button.backgroundColor = UIColor.whiteColor()
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor.white
         button.tintColor = FleaPalette.DarkGray
-        button.setTitle("Cancel", forState: .Normal)
+        button.setTitle("Cancel", for: UIControlState())
         
         return button
     }()
@@ -67,7 +67,7 @@ class ShareView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        cancelButton.addTarget(self, action: #selector(onCancel(_:)), forControlEvents: .TouchUpInside)
+        cancelButton.addTarget(self, action: #selector(onCancel(_:)), for: .touchUpInside)
         addSubview(cancelButton)
     }
     
@@ -75,13 +75,13 @@ class ShareView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func onCancel(sender: UIButton) {
+    func onCancel(_ sender: UIButton) {
         flea?.dismiss()
     }
 }
 
 extension ShareView: FleaContentView {
-    func prepareInView(view: UIView) {
+    func prepareInView(_ view: UIView) {
         backgroundColor = FleaPalette.DarkWhite
         
         
@@ -118,7 +118,7 @@ extension ShareView: FleaContentView {
 }
 
 extension ShareView {
-    func addShareItem(image: UIImage, action: (() -> Void)?) {
+    func addShareItem(_ image: UIImage, action: (() -> Void)?) {
         let itemView = ShareItemView()
         itemView.imageView.image = image
         itemView.didTapAction = action

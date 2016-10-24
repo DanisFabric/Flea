@@ -204,7 +204,7 @@ extension Flea {
         show(inView: window)
     }
     fileprivate func show(inNavigationController navigationController: UINavigationController) {
-        if navigationController.navigationBar.isTranslucent && anchor == .edge && direction == .top {
+        if anchor == .edge && direction == .top {
             baseBehindView = navigationController.navigationBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
             if !UIApplication.shared.isStatusBarHidden {
@@ -214,7 +214,7 @@ extension Flea {
         show(inView: navigationController.view)
     }
     fileprivate func show(inTabBarController tabBarController: UITabBarController) {
-        if tabBarController.tabBar.isTranslucent && anchor == .edge && direction == .bottom {
+        if anchor == .edge && direction == .bottom {
             baseBehindView = tabBarController.tabBar
             offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
         }
@@ -257,7 +257,7 @@ extension Flea {
     }
     
     
-    public func dismiss() {
+    public func dismiss(withCompletion completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: animationDuration, animations: { 
             
             self.containerView.frame.origin = self.initialOrigin

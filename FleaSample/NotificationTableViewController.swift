@@ -29,9 +29,6 @@ class NotificationTableViewController: UITableViewController {
         switch (indexPath as NSIndexPath).row {
         case 0:
             let defaultNotificationFlea = Flea(type: .notification(title: "Hello, welcome to use Flea"))
-            defaultNotificationFlea.setNotificationAction("Thanks", action: { 
-                
-            })
             defaultNotificationFlea.baseAt(tabBarController!).stay(2).show()
         case 1:
             let notificationFlea = Flea(type: .notification(title: "Hello, welcome to use Flea"))

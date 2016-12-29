@@ -1,0 +1,10 @@
+framework module Flea {
+  umbrella header "Flea.h"
+
+  export *
+  module * { export * }
+}
+
+module Flea.Swift {
+    header "Flea-Swift.h"
+}

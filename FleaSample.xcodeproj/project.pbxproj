@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		000BF03C1E150C91004EA6C8 /* Common */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 000BF03F1E150C91004EA6C8 /* Build configuration list for PBXAggregateTarget "Common" */;
+			buildPhases = (
+				000BF0421E150C9F004EA6C8 /* ShellScript */,
+			);
+			dependencies = (
+				000BF0411E150C9C004EA6C8 /* PBXTargetDependency */,
+			);
+			name = Common;
+			productName = Common;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B73527CA1D6576B700427BCF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73527C91D6576B700427BCF /* LoginView.swift */; };
 		B79112801D6302860090937F /* ActionSheetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B791127F1D6302860090937F /* ActionSheetTableViewController.swift */; };
@@ -30,6 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		000BF0401E150C9C004EA6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7F3FA301D23B65C00BED1B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7F3FA511D23B66B00BED1B7;
+			remoteInfo = Flea;
+		};
 		B7F3FA571D23B66B00BED1B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B7F3FA301D23B65C00BED1B7 /* Project object */;
@@ -218,6 +240,10 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "廖雷";
 				TargetAttributes = {
+					000BF03C1E150C91004EA6C8 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
 					B7F3FA371D23B65C00BED1B7 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = D65DK9X9W4;
@@ -244,6 +270,7 @@
 			targets = (
 				B7F3FA371D23B65C00BED1B7 /* FleaSample */,
 				B7F3FA511D23B66B00BED1B7 /* Flea */,
+				000BF03C1E150C91004EA6C8 /* Common */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +295,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		000BF0421E150C9F004EA6C8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n# 例如: FMK_NAME = \"MyFramework\"\n# FMK_NAME=${PROJECT_NAME}\nFMK_NAME=\"Flea\"\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator clean build\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\nmkdir -p \"${INSTALL_DIR}\"\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\nrm -r \"${WRK_DIR}\"\nopen \"${INSTALL_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B7F3FA341D23B65C00BED1B7 /* Sources */ = {
@@ -300,6 +343,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		000BF0411E150C9C004EA6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7F3FA511D23B66B00BED1B7 /* Flea */;
+			targetProxy = 000BF0401E150C9C004EA6C8 /* PBXContainerItemProxy */;
+		};
 		B7F3FA581D23B66B00BED1B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B7F3FA511D23B66B00BED1B7 /* Flea */;
@@ -327,6 +375,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		000BF03D1E150C91004EA6C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		000BF03E1E150C91004EA6C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B7F3FA481D23B65C00BED1B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +556,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		000BF03F1E150C91004EA6C8 /* Build configuration list for PBXAggregateTarget "Common" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000BF03D1E150C91004EA6C8 /* Debug */,
+				000BF03E1E150C91004EA6C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B7F3FA331D23B65C00BED1B7 /* Build configuration list for PBXProject "FleaSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

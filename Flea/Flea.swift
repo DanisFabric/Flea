@@ -318,12 +318,6 @@ extension Flea {
             break
         }
     }
-    public func setNotificationAction(_ title: String, color: UIColor = UIColor.white, action: (() -> Void)?) {
-        let item = FleaActionItem(title: title, color: color, action: action)
-        let notificationView = contentView as! FleaNotificationView
-        notificationView.actionItem = item
-        
-    }
     public var titleColor: UIColor? {
         get {
             switch type {
@@ -345,7 +339,6 @@ extension Flea {
                 (contentView as! FleaAlertView).titleLabel.textColor = newValue
             case .notification:
                 (contentView as! FleaNotificationView).titleLabel.textColor = newValue
-                (contentView as! FleaNotificationView).closeButton.tintColor = newValue // CloseButton use the same color of TitleLabel
             default:
                 break
             }

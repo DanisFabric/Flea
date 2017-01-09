@@ -35,7 +35,7 @@ class NotificationTableViewController: UITableViewController {
             notificationFlea.titleColor = UIColor.white
             notificationFlea.style = .normal(FleaPalette.Green)
             
-            notificationFlea.baseAt(navigationCotnroller: navigationController!).stay(2).show()
+            notificationFlea.baseAt(navigationController).stay(2).show()
         default:
             break
         }

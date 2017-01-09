@@ -16,8 +16,33 @@ public enum Direction {
 }
 
 public enum Anchor {
-    case edge
-    case center
+    case edge(Direction)
+    case center(Direction?)
+    
+    var direction: Direction? {
+        switch self {
+        case .edge(let direction):
+            return direction
+        case .center(let direction):
+            return direction
+        }
+    }
+    var isEdge: Bool {
+        switch self {
+        case .edge:
+            return true
+        default:
+            return false
+        }
+    }
+    var isCenter: Bool {
+        switch self {
+        case .edge:
+            return false
+        case .center:
+            return true
+        }
+    }
 }
 
 public enum FleaStyle {
@@ -44,8 +69,7 @@ public protocol FleaContentView {
 
 open class Flea: UIView {
     open fileprivate(set) var type = Type.custom
-    open var direction = Direction.top
-    open var anchor = Anchor.edge
+    open var anchor = Anchor.center(nil)
     open var style = FleaStyle.normal(UIColor.white)
     open var backgroundStyle = FleaBackgroundStyle.clear
     
@@ -65,8 +89,10 @@ open class Flea: UIView {
     fileprivate var animationDuration = 0.3
     fileprivate var animationSpringDuration = 0.5
     
-    fileprivate var initialOrigin = CGPoint()
-    fileprivate var finalOrigin = CGPoint()
+    fileprivate var initialPosition = CGPoint()
+    fileprivate var finalPosition = CGPoint()
+    fileprivate var initialTransform = CGAffineTransform.identity
+    fileprivate var initialAlpha: CGFloat = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,23 +108,22 @@ open class Flea: UIView {
         case .custom:
             break
         case .actionSheet(let title, let subTitle):
-            direction = .bottom
+            anchor = .edge(.top)
             backgroundStyle = .dark
             contentView = FleaActionView()
             (contentView as! FleaActionView).title = title
             (contentView as! FleaActionView).subTitle = subTitle
             (contentView as! FleaActionView).flea = self
         case .alert(let title, let subTitle):
-            direction = .top
+            anchor = .center(nil)
             backgroundStyle = .dark
-            anchor = .center
             cornerRadius = 4
             contentView = FleaAlertView()
             (contentView as! FleaAlertView).title = title
             (contentView as! FleaAlertView).subTitle = subTitle
             (contentView as! FleaAlertView).flea = self
         case .notification(let title):
-            direction = .top
+            anchor = .edge(.top)
             backgroundStyle = .none
             style = .blur(.dark)
             contentView = FleaNotificationView()
@@ -145,33 +170,78 @@ open class Flea: UIView {
         containerView.layer.masksToBounds = true
         
         // 配置初始位置／配置最终位置
-        switch direction {
-        case .top:
-            initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
-            if anchor == .edge {
-                finalOrigin = CGPoint(x: initialOrigin.x, y: offset.vertical)
-            }
-        case .left:
-            initialOrigin = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
-            if anchor == .edge {
-                finalOrigin = CGPoint(x: offset.horizontal, y: initialOrigin.y)
-            }
-        case .bottom:
-            initialOrigin = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
-            if anchor == .edge {
-                finalOrigin = CGPoint(x: initialOrigin.x, y: bounds.height - containerView.bounds.height + offset.vertical)
-            }
-        case .right:
-            initialOrigin = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
-            if anchor == .edge {
-                finalOrigin = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialOrigin.y)
+        func layoutInitialPosition(direction: Direction) {
+            switch direction {
+            case .top:
+                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
+            case .left:
+                initialPosition = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+            case .bottom:
+                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
+            case .right:
+                initialPosition = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
             }
         }
-        if anchor == .center {
-            finalOrigin = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
+        switch anchor {
+        case .edge(let direction):
+            layoutInitialPosition(direction: direction)
+            
+            switch direction {
+            case .top:
+                finalPosition = CGPoint(x: initialPosition.x, y: offset.vertical)
+
+            case .left:
+                finalPosition = CGPoint(x: offset.horizontal, y: initialPosition.y)
+
+            case .bottom:
+                finalPosition = CGPoint(x: initialPosition.x, y: bounds.height - containerView.bounds.height + offset.vertical)
+
+            case .right:
+                finalPosition = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialPosition.y)
+
+            }
+        case .center(let direction):
+            finalPosition = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
+            
+            if let direction = direction {
+                layoutInitialPosition(direction: direction)
+            } else {
+                initialPosition = finalPosition
+                initialTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                initialAlpha = 0
+            }
         }
         
-        containerView.frame.origin = initialOrigin
+        
+//        switch direction {
+//        case .top:
+//            initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
+//            if anchor == .edge {
+//                finalPosition = CGPoint(x: initialPosition.x, y: offset.vertical)
+//            }
+//        case .left:
+//            initialPosition = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+//            if anchor == .edge {
+//                finalPosition = CGPoint(x: offset.horizontal, y: initialPosition.y)
+//            }
+//        case .bottom:
+//            initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
+//            if anchor == .edge {
+//                finalPosition = CGPoint(x: initialPosition.x, y: bounds.height - containerView.bounds.height + offset.vertical)
+//            }
+//        case .right:
+//            initialPosition = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+//            if anchor == .edge {
+//                finalPosition = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialPosition.y)
+//            }
+//        }
+//        if anchor == .center {
+//            finalPosition = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
+//        }
+        containerView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        containerView.frame.origin = initialPosition
+        containerView.alpha = initialAlpha
+        containerView.transform = initialTransform
     }
     
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -204,19 +274,29 @@ extension Flea {
         show(inView: window)
     }
     fileprivate func show(inNavigationController navigationController: UINavigationController) {
-        if anchor == .edge && direction == .top {
-            baseBehindView = navigationController.navigationBar
-            offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
-            if !UIApplication.shared.isStatusBarHidden {
-                offset.vertical += UIApplication.shared.statusBarFrame.height
+        switch anchor {
+        case .edge(let direction):
+            if direction == .top {
+                baseBehindView = navigationController.navigationBar
+                offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
+                if !UIApplication.shared.isStatusBarHidden {
+                    offset.vertical += UIApplication.shared.statusBarFrame.height
+                }
             }
+        default:
+            break
         }
         show(inView: navigationController.view)
     }
     fileprivate func show(inTabBarController tabBarController: UITabBarController) {
-        if anchor == .edge && direction == .bottom {
-            baseBehindView = tabBarController.tabBar
-            offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
+        switch anchor {
+        case .edge(let direction):
+            if direction == .bottom {
+                baseBehindView = tabBarController.tabBar
+                offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
+            }
+        default:
+            break
         }
         show(inView: tabBarController.view)
     }
@@ -232,10 +312,18 @@ extension Flea {
 
         prepared()
         
-        let animations = {
-            self.containerView.frame.origin = self.finalOrigin
-            if self.backgroundStyle == .dark {
-                self.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        func animations() {
+            if anchor.isCenter && anchor.direction == nil {
+                
+            } else {
+                containerView.frame.origin = self.finalPosition
+                
+            }
+            containerView.transform = CGAffineTransform.identity
+            containerView.alpha = 1
+            
+            if backgroundStyle == .dark {
+                backgroundColor = UIColor.black.withAlphaComponent(0.6)
             }
         }
         if spring {
@@ -260,7 +348,9 @@ extension Flea {
     public func dismiss(withCompletion completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: animationDuration, animations: { 
             
-            self.containerView.frame.origin = self.initialOrigin
+            self.containerView.frame.origin = self.initialPosition
+            self.containerView.alpha = self.initialAlpha
+            self.containerView.transform = self.initialTransform
             self.backgroundColor = UIColor.clear
             
             }, completion: { (_) in
@@ -275,20 +365,18 @@ extension Flea {
 }
 
 extension Flea {
-    public func baseAt(_ view: UIView, behind: UIView? = nil) -> Self {
-        baseView = view
-        baseBehindView = behind
-        
-        return self
-    }
-    public func baseAt(navigationCotnroller navigationController: UINavigationController) -> Self {
-        baseNavigationConroller = navigationController
-        
-        return self
-    }
-    public func baseAt(_ tabBarController: UITabBarController) -> Self {
-        direction = .bottom
-        baseTabBarController = tabBarController
+    public func baseAt(_ any: Any, behind: UIView? = nil) -> Self {
+        switch any {
+        case let view as UIView:
+            baseView = view
+            baseBehindView = behind
+        case let navigationController as UINavigationController :
+            baseNavigationConroller = navigationController
+        case let tabBarController as UITabBarController:
+            baseTabBarController = tabBarController
+        default:
+            break
+        }
         
         return self
     }

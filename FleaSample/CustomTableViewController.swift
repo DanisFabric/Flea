@@ -34,8 +34,7 @@ class CustomTableViewController: UITableViewController {
             guideView.addPage(UIImage(named: "guide-1")!)
             
             let flea = Flea(type: .custom)
-            flea.anchor = .center
-            flea.direction = .top
+            flea.anchor = .center(.top)
             flea.backgroundStyle = .dark
             flea.cornerRadius = 4
             
@@ -44,7 +43,7 @@ class CustomTableViewController: UITableViewController {
             let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 250))
             
             let flea = Flea(type: .custom)
-            flea.direction = .top
+            flea.anchor = .edge(.top)
             flea.backgroundStyle = .dark
             
             flea.fill(loginView).show()
@@ -52,8 +51,7 @@ class CustomTableViewController: UITableViewController {
             let loginView = LoginView(frame: CGRect(x: 0, y: 0, width: view.bounds.width * 0.8, height: 250))
             
             let flea = Flea(type: .custom)
-            flea.direction = .top
-            flea.anchor = .center
+            flea.anchor = .center(nil)
             flea.backgroundStyle = .dark
             flea.cornerRadius = 4
             
@@ -69,7 +67,7 @@ class CustomTableViewController: UITableViewController {
             shareView.addShareItem(UIImage(named: "youtube")!, action: nil)
             
             let flea = Flea(type: .custom)
-            flea.direction = .bottom
+            flea.anchor = .edge(.bottom)
             flea.backgroundStyle = .dark
             
             shareView.flea = flea

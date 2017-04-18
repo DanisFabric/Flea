@@ -365,7 +365,7 @@ extension Flea {
 }
 
 extension Flea {
-    public func baseAt(_ any: Any, behind: UIView? = nil) -> Self {
+    public func baseAt(_ any: Any?, behind: UIView? = nil) -> Self {
         switch any {
         case let view as UIView:
             baseView = view

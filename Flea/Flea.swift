@@ -357,7 +357,7 @@ extension Flea {
             self.backgroundColor = UIColor.clear
             
             }, completion: { (_) in
-                didDismissHandler?()
+                self.didDismissHandler?()
                 self.removeFromSuperview()
         }) 
     }

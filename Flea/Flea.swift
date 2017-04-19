@@ -70,6 +70,8 @@ public protocol FleaContentView {
 open class Flea: UIView {
     public var willDismissHandler: (() -> Void)?
     public var didDismissHandler: (() -> Void)?
+    
+    
     open fileprivate(set) var type = Type.custom
     open var anchor = Anchor.center(nil)
     open var style = FleaStyle.normal(UIColor.white)

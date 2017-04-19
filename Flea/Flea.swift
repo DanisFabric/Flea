@@ -68,6 +68,8 @@ public protocol FleaContentView {
 }
 
 open class Flea: UIView {
+    public var willDismissHandler: (() -> Void)?
+    public var didDismissHandler: (() -> Void)?
     open fileprivate(set) var type = Type.custom
     open var anchor = Anchor.center(nil)
     open var style = FleaStyle.normal(UIColor.white)
@@ -346,6 +348,7 @@ extension Flea {
     
     
     public func dismiss(withCompletion completion: (() -> Void)? = nil) {
+        willDismissHandler?()
         UIView.animate(withDuration: animationDuration, animations: { 
             
             self.containerView.frame.origin = self.initialPosition
@@ -354,6 +357,7 @@ extension Flea {
             self.backgroundColor = UIColor.clear
             
             }, completion: { (_) in
+                didDismissHandler?()
                 self.removeFromSuperview()
         }) 
     }

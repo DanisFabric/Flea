@@ -77,7 +77,11 @@ open class Flea: UIView {
     open var style = FleaStyle.normal(UIColor.white)
     open var backgroundStyle = FleaBackgroundStyle.clear
     
-    open var offset = UIOffset()
+    open var offset = UIOffset() {
+        didSet {
+            finalOffset = offset
+        }
+    }
     open var spring = true
     open var cornerRadius: CGFloat = 0
     open var duration = 0.0
@@ -97,6 +101,8 @@ open class Flea: UIView {
     fileprivate var finalPosition = CGPoint()
     fileprivate var initialTransform = CGAffineTransform.identity
     fileprivate var initialAlpha: CGFloat = 1
+    
+    fileprivate var finalOffset = UIOffset()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -177,13 +183,13 @@ open class Flea: UIView {
         func layoutInitialPosition(direction: Direction) {
             switch direction {
             case .top:
-                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: -containerView.bounds.height)
+                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + finalOffset.horizontal, y: -containerView.bounds.height)
             case .left:
-                initialPosition = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+                initialPosition = CGPoint(x: -containerView.bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + finalOffset.vertical)
             case .bottom:
-                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + offset.horizontal, y: bounds.height)
+                initialPosition = CGPoint(x: (bounds.width - containerView.bounds.width) / 2 + finalOffset.horizontal, y: bounds.height)
             case .right:
-                initialPosition = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + offset.vertical)
+                initialPosition = CGPoint(x: bounds.width, y: (bounds.height - containerView.bounds.height) / 2 + finalOffset.vertical)
             }
         }
         switch anchor {
@@ -192,20 +198,20 @@ open class Flea: UIView {
             
             switch direction {
             case .top:
-                finalPosition = CGPoint(x: initialPosition.x, y: offset.vertical)
+                finalPosition = CGPoint(x: initialPosition.x, y: finalOffset.vertical)
 
             case .left:
-                finalPosition = CGPoint(x: offset.horizontal, y: initialPosition.y)
+                finalPosition = CGPoint(x: finalOffset.horizontal, y: initialPosition.y)
 
             case .bottom:
-                finalPosition = CGPoint(x: initialPosition.x, y: bounds.height - containerView.bounds.height + offset.vertical)
+                finalPosition = CGPoint(x: initialPosition.x, y: bounds.height - containerView.bounds.height + finalOffset.vertical)
 
             case .right:
-                finalPosition = CGPoint(x: bounds.width - containerView.bounds.width + offset.horizontal, y: initialPosition.y)
+                finalPosition = CGPoint(x: bounds.width - containerView.bounds.width + finalOffset.horizontal, y: initialPosition.y)
 
             }
         case .center(let direction):
-            finalPosition = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + offset.vertical)
+            finalPosition = CGPoint(x: bounds.midX - containerView.bounds.width/2 + offset.horizontal, y: bounds.midY - containerView.bounds.height/2 + finalOffset.vertical)
             
             if let direction = direction {
                 layoutInitialPosition(direction: direction)
@@ -282,9 +288,9 @@ extension Flea {
         case .edge(let direction):
             if direction == .top {
                 baseBehindView = navigationController.navigationBar
-                offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
+                finalOffset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical + navigationController.navigationBar.frame.height)
                 if !UIApplication.shared.isStatusBarHidden {
-                    offset.vertical += UIApplication.shared.statusBarFrame.height
+                    finalOffset.vertical += UIApplication.shared.statusBarFrame.height
                 }
             }
         default:
@@ -297,7 +303,7 @@ extension Flea {
         case .edge(let direction):
             if direction == .bottom {
                 baseBehindView = tabBarController.tabBar
-                offset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
+                finalOffset = UIOffset(horizontal: offset.horizontal, vertical: offset.vertical - tabBarController.tabBar.frame.height)
             }
         default:
             break

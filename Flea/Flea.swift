@@ -87,7 +87,7 @@ open class Flea: UIView {
     open var duration = 0.0
     
     var containerView = UIView()
-    var contentView: UIView?
+    public var contentView: UIView?
 
     fileprivate var baseView: UIView?
     fileprivate var baseNavigationConroller: UINavigationController?

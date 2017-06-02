@@ -32,10 +32,10 @@ class FleaNotificationView: UIView {
 }
 
 extension FleaNotificationView: FleaContentView {
-    func prepareInView(_ view: UIView) {
+    func willBeAdded(to flea: Flea) {
         addSubview(titleLabel)
         
-        self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 32)
+        self.frame = CGRect(x: 0, y: 0, width: flea.bounds.width, height: 32)
         titleLabel.frame = self.bounds
     }
 }

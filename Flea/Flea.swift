@@ -64,7 +64,13 @@ public enum Type {
 }
 
 public protocol FleaContentView {
-    func prepareInView(_ view: UIView)
+    
+    /// 在将Content添加到Flea之前被调用
+    /// 在这里对content的frame进行最后的调整
+    /// 也可以在这里对content的内容进行布局
+    ///
+    /// - Parameter flea: 包含content的flea，flea的size与其被添加的base的size相同
+    func willBeAdded(to flea: Flea)
 }
 
 open class Flea: UIView {
@@ -170,7 +176,7 @@ open class Flea: UIView {
             containerView = UIVisualEffectView(effect: blurEffect)
         }
         if let contentView = contentView as? FleaContentView {
-            contentView.prepareInView(self)
+            contentView.willBeAdded(to: self)
         }
         containerView.frame = contentView.frame
         containerView.addSubview(contentView)

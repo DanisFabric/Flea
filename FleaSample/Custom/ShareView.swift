@@ -81,15 +81,14 @@ class ShareView: UIView {
 }
 
 extension ShareView: FleaContentView {
-    func prepareInView(_ view: UIView) {
+    func willBeAdded(to flea: Flea) {
         backgroundColor = FleaPalette.DarkWhite
-        
         
         let margin = UIOffset(horizontal: 10, vertical: 20)
         let toEdge = UIOffset(horizontal: 20, vertical: 20)
         
         var maxY = toEdge.vertical
-        let contentWidth = view.bounds.width - toEdge.horizontal * 2
+        let contentWidth = flea.bounds.width - toEdge.horizontal * 2
         
         let itemSize = { () -> CGSize in
             let width = (contentWidth - margin.horizontal * CGFloat(preferedColumns - 1)) / CGFloat(preferedColumns)
@@ -110,10 +109,10 @@ extension ShareView: FleaContentView {
             }
         }
         maxY += toEdge.vertical + itemSize.height
-        cancelButton.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
+        cancelButton.frame = CGRect(x: 0, y: maxY, width: flea.bounds.width, height: 44)
         maxY += 44
         
-        self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
+        self.frame = CGRect(x: 0, y: 0, width: flea.bounds.width, height: maxY)
     }
 }
 

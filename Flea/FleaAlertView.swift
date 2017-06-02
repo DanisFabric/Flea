@@ -88,11 +88,11 @@ class FleaAlertView: UIView {
 }
 
 extension FleaAlertView: FleaContentView {
-    func prepareInView(_ view: UIView) {
+    func willBeAdded(to flea: Flea) {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
-        let contentWidth = view.bounds.width * 0.8
+        let contentWidth = flea.bounds.width * 0.8
         let textMargin: CGFloat = 20
         let textWidth = contentWidth - textMargin * 2
         var maxY: CGFloat = 0
@@ -118,7 +118,7 @@ extension FleaAlertView: FleaContentView {
             let button2 = FleaAlertButton(type: .custom)
             button1.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             button2.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-
+            
             button1.setTitle(actionItems[0].title, for: UIControlState())
             button1.setTitleColor(actionItems[0].color, for: UIControlState())
             button2.setTitle(actionItems[1].title, for: UIControlState())
@@ -146,7 +146,7 @@ extension FleaAlertView: FleaContentView {
             for item in actionItems {
                 let button = FleaAlertButton(type: .custom)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-
+                
                 button.setTitle(item.title, for: UIControlState())
                 button.setTitleColor(item.color, for: UIControlState())
                 button.frame = CGRect(x: 0, y: maxY, width: contentWidth, height: 44)
@@ -158,12 +158,12 @@ extension FleaAlertView: FleaContentView {
             }
         }
         
-        self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)
+        self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)   
     }
     @objc fileprivate func onTapButton(_ sender: FleaAlertButton) {
         let index = buttons.index(of: sender)!
         let item = actionItems[index]
-            
+        
         item.action?()
         flea?.dismiss()
     }

@@ -78,12 +78,12 @@ class FleaActionView: UIView {
 }
 
 extension FleaActionView: FleaContentView {
-    func prepareInView(_ view: UIView) {
+    func willBeAdded(to flea: Flea) {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
         let textMargin: CGFloat = 20
-        let textWidth = view.bounds.width - textMargin * 2
+        let textWidth = flea.bounds.width - textMargin * 2
         var maxY: CGFloat = 0
         
         titleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
@@ -111,7 +111,7 @@ extension FleaActionView: FleaContentView {
             button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             button.setTitle(item.title, for: UIControlState())
             button.setTitleColor(item.color, for: UIControlState())
-            button.frame = CGRect(x: 0, y: maxY, width: view.bounds.width, height: 44)
+            button.frame = CGRect(x: 0, y: maxY, width: flea.bounds.width, height: 44)
             maxY += 44
             
             print("Add Action")
@@ -119,7 +119,7 @@ extension FleaActionView: FleaContentView {
             addSubview(button)
             buttons.append(button)
         }
-        self.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: maxY)
+        self.frame = CGRect(x: 0, y: 0, width: flea.bounds.width, height: maxY)
     }
     func onTap(_ sender: AnyObject) {
         print("点我")

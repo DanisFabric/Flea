@@ -48,6 +48,7 @@ class AlertTableViewController: UITableViewController {
             alert.addAction("What is Flea", color: FleaPalette.Red, action: { 
                 
             })
+            alert.contentWidthScale = 0.2
             alert.show()
         default:
             break

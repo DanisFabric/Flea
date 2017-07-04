@@ -30,7 +30,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class FleaAlertView: UIView {
     weak var flea: Flea?
-    
+    var widthScale: CGFloat = 0.8
     var title: String? {
         get {
             return titleLabel.text
@@ -92,7 +92,7 @@ extension FleaAlertView: FleaContentView {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
-        let contentWidth = flea.bounds.width * 0.8
+        let contentWidth = flea.bounds.width * widthScale
         let textMargin: CGFloat = 20
         let textWidth = contentWidth - textMargin * 2
         var maxY: CGFloat = 0

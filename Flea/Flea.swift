@@ -81,6 +81,7 @@ open class Flea: UIView {
     open var anchor = Anchor.center(nil)
     open var style = FleaStyle.normal(UIColor.white)
     open var backgroundStyle = FleaBackgroundStyle.clear
+    open var forbidSystemAlertStyle = false
     
     open var offset = UIOffset() {
         didSet {

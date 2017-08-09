@@ -111,9 +111,11 @@ extension FleaAlertView: FleaContentView {
             subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
             maxY = subTitleLabel.frame.maxY
         }
-        maxY += textMargin
+        if titleLabel.text != nil || subTitleLabel.text != nil {
+            maxY += textMargin
+        }
         
-        if actionItems.count == 2 {
+        if actionItems.count == 2 && !flea.forbidSystemAlertStyle {
             let button1 = FleaAlertButton(type: .custom)
             let button2 = FleaAlertButton(type: .custom)
             button1.titleLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -156,6 +158,7 @@ extension FleaAlertView: FleaContentView {
                 addSubview(button)
                 buttons.append(button)
             }
+            buttons.first?.line.removeFromSuperview()
         }
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)   

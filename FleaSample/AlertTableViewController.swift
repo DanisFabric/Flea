@@ -38,16 +38,17 @@ class AlertTableViewController: UITableViewController {
             })
             defaultAlertFlea.show()
         case 1:
-            let alert = Flea(type: .alert(title: "Do you love Flea", subTitle: "If you love Flea, you may star it on GitHub"))
+            let alert = Flea(type: .alert(title: nil, subTitle: nil))
+            alert.forbidSystemAlertStyle = true
             alert.addAction("No, thanks", action: { 
                 
             })
             alert.addAction("I love Flea", action: { 
                 
             })
-            alert.addAction("What is Flea", color: FleaPalette.Red, action: { 
-                
-            })
+//            alert.addAction("What is Flea", color: FleaPalette.Red, action: { 
+//                
+//            })
             alert.contentWidthScale = 0.2
             alert.show()
         default:

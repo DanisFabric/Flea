@@ -34,7 +34,7 @@ class NotificationTableViewController: UITableViewController {
             let notificationFlea = Flea(type: .notification(title: "Hello, welcome to use Flea"))
             notificationFlea.titleColor = UIColor.white
             notificationFlea.style = .normal(FleaPalette.Green)
-            
+            notificationFlea.contentWidthScale = 0.8
             notificationFlea.baseAt(navigationController).stay(2).show()
         default:
             break

@@ -49,6 +49,7 @@ class ActionSheetTableViewController: UITableViewController {
             actionFlea.addAction("I love it", color: FleaPalette.Red, action: { 
                 
             })
+            actionFlea.contentWidthScale = 0.6
             actionFlea.show()
             
         case 2:

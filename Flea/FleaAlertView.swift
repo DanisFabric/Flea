@@ -96,6 +96,7 @@ extension FleaAlertView: FleaContentView {
         let textMargin: CGFloat = 20
         let textWidth = contentWidth - textMargin * 2
         var maxY: CGFloat = 0
+        let titleShow = titleLabel.text != nil || subTitleLabel.text != nil
         
         titleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
         titleLabel.sizeToFit()
@@ -111,7 +112,7 @@ extension FleaAlertView: FleaContentView {
             subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
             maxY = subTitleLabel.frame.maxY
         }
-        if titleLabel.text != nil || subTitleLabel.text != nil {
+        if titleShow {
             maxY += textMargin
         }
         
@@ -158,7 +159,9 @@ extension FleaAlertView: FleaContentView {
                 addSubview(button)
                 buttons.append(button)
             }
-            buttons.first?.line.removeFromSuperview()
+            if !titleShow {
+                buttons.first?.line.removeFromSuperview()
+            }
         }
         
         self.frame = CGRect(x: 0, y: 0, width: contentWidth, height: maxY)   

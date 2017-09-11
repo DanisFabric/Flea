@@ -196,7 +196,13 @@ open class Flea: UIView {
             contentView.willBeAdded(to: self)
         }
         containerView.frame = contentView.frame
-        containerView.addSubview(contentView)
+        switch style {
+        case .normal(let color):
+            containerView.addSubview(contentView)
+        case .blur(let blurEffectStyle):
+            (containerView as! UIVisualEffectView).contentView.addSubview(contentView)
+        }
+
         addSubview(containerView)
         
         containerView.layer.cornerRadius = cornerRadius

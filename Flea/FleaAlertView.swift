@@ -30,7 +30,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class FleaAlertView: UIView {
     weak var flea: Flea?
-    
+    var widthScale: CGFloat = 0.8
     var title: String? {
         get {
             return titleLabel.text
@@ -92,10 +92,11 @@ extension FleaAlertView: FleaContentView {
         addSubview(titleLabel)
         addSubview(subTitleLabel)
         
-        let contentWidth = flea.bounds.width * 0.8
+        let contentWidth = flea.bounds.width * widthScale
         let textMargin: CGFloat = 20
         let textWidth = contentWidth - textMargin * 2
         var maxY: CGFloat = 0
+        let titleShow = titleLabel.text != nil || subTitleLabel.text != nil
         
         titleLabel.frame = CGRect(x: 0, y: 0, width: textWidth, height: 0)
         titleLabel.sizeToFit()
@@ -111,9 +112,11 @@ extension FleaAlertView: FleaContentView {
             subTitleLabel.frame = CGRect(x: textMargin, y: maxY + textMargin, width: textWidth, height: subTitleLabel.frame.height)
             maxY = subTitleLabel.frame.maxY
         }
-        maxY += textMargin
+        if titleShow {
+            maxY += textMargin
+        }
         
-        if actionItems.count == 2 {
+        if actionItems.count == 2 && !flea.forbidSystemAlertStyle {
             let button1 = FleaAlertButton(type: .custom)
             let button2 = FleaAlertButton(type: .custom)
             button1.titleLabel?.font = UIFont.systemFont(ofSize: 15)
@@ -155,6 +158,9 @@ extension FleaAlertView: FleaContentView {
                 button.addTarget(self, action: #selector(onTapButton(_:)), for: .touchUpInside)
                 addSubview(button)
                 buttons.append(button)
+            }
+            if !titleShow {
+                buttons.first?.line.removeFromSuperview()
             }
         }
         

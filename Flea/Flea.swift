@@ -64,7 +64,6 @@ public enum Type {
 }
 
 public protocol FleaContentView {
-    
     /// 在将Content添加到Flea之前被调用
     /// 在这里对content的frame进行最后的调整
     /// 也可以在这里对content的内容进行布局
@@ -77,11 +76,12 @@ open class Flea: UIView {
     public var willDismissHandler: (() -> Void)?
     public var didDismissHandler: (() -> Void)?
     
-    
     open fileprivate(set) var type = Type.custom
+    
     open var anchor = Anchor.center(nil)
     open var style = FleaStyle.normal(UIColor.white)
     open var backgroundStyle = FleaBackgroundStyle.clear
+    open var forbidSystemAlertStyle = false
     
     open var offset = UIOffset() {
         didSet {
@@ -91,6 +91,11 @@ open class Flea: UIView {
     open var spring = true
     open var cornerRadius: CGFloat = 0
     open var duration = 0.0
+    // default value for actionSheet is 1.0
+    // default value for alert is 0.8
+    // default value for notification is 1.0
+    // custom view can difine scale free, so this value has no effect
+    open var contentWidthScale: CGFloat = 0
     
     var containerView = UIView()
     public var contentView: UIView?
@@ -166,6 +171,18 @@ open class Flea: UIView {
         guard let contentView = contentView else {
             return
         }
+        if contentWidthScale != 0 {
+            switch self.type {
+            case .alert(_,_):
+                (contentView as! FleaAlertView).widthScale = contentWidthScale
+            case .actionSheet(_,_):
+                (contentView as! FleaActionView).widthScale = contentWidthScale
+            case .notification(_):
+                (contentView as! FleaNotificationView).widthScale = contentWidthScale
+            default:
+                break
+            }
+        }
         backgroundColor = UIColor.clear
         switch style {
         case .normal(let color):
@@ -179,7 +196,13 @@ open class Flea: UIView {
             contentView.willBeAdded(to: self)
         }
         containerView.frame = contentView.frame
-        containerView.addSubview(contentView)
+        switch style {
+        case .normal(let color):
+            containerView.addSubview(contentView)
+        case .blur(let blurEffectStyle):
+            (containerView as! UIVisualEffectView).contentView.addSubview(contentView)
+        }
+
         addSubview(containerView)
         
         containerView.layer.cornerRadius = cornerRadius

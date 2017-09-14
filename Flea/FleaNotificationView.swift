@@ -11,6 +11,7 @@ import UIKit
 class FleaNotificationView: UIView {
 
     weak var flea: Flea?
+    var widthScale: CGFloat = 1.0
     var title: String? {
         get {
             return titleLabel.text
@@ -35,7 +36,7 @@ extension FleaNotificationView: FleaContentView {
     func willBeAdded(to flea: Flea) {
         addSubview(titleLabel)
         
-        self.frame = CGRect(x: 0, y: 0, width: flea.bounds.width, height: 32)
+        self.frame = CGRect(x: 0, y: 0, width: flea.bounds.width * widthScale, height: 32)
         titleLabel.frame = self.bounds
     }
 }
